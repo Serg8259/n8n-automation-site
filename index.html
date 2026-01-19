@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>n8n - Платформа автоматизации процессов</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #0f172a;
+            background-color: #ffffff;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5%;
+            background-color: #020617;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #38bdf8;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #f1f5f9;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #38bdf8;
+        }
+
+        .btn-primary {
+            background-color: #38bdf8;
+            color: #0f172a;
+            padding: 0.7rem 1.5rem;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn-primary:hover {
+            background-color: #0284c7;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #020617 0%, #0f172a 100%);
+            color: #f1f5f9;
+            padding: 6rem 5%;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero .highlight {
+            color: #38bdf8;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: #cbd5e1;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 3rem;
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: #f1f5f9;
+            padding: 0.8rem 2rem;
+            border: 2px solid #38bdf8;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-secondary:hover {
+            background-color: #38bdf8;
+            color: #0f172a;
+        }
+
+        .hero-flow {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+            background-color: rgba(56, 189, 248, 0.1);
+            border-radius: 12px;
+            border: 1px solid #38bdf8;
+        }
+
+        .flow-steps {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .flow-step {
+            background-color: #1e293b;
+            padding: 0.8rem 1.2rem;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            color: #cbd5e1;
+            border-top: 3px solid #38bdf8;
+        }
+
+        .flow-arrow {
+            color: #38bdf8;
+            font-size: 1.5rem;
+        }
+
+        /* Problems Section */
+        .problems {
+            padding: 5rem 5%;
+            background-color: #f8fafc;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #0f172a;
+        }
+
+        .section-title .accent {
+            color: #f43f5e;
+        }
+
+        .problems-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .problem-card {
+            background-color: #ffffff;
+            padding: 2rem;
+            border-radius: 12px;
+            border-left: 4px solid #f43f5e;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .problem-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+        }
+
+        .problem-card .icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .problem-card h3 {
+            color: #f43f5e;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .problem-card p {
+            color: #64748b;
+        }
+
+        /* Benefits Section */
+        .benefits {
+            padding: 5rem 5%;
+            background-color: #ffffff;
+        }
+
+        .section-title .accent-green {
+            color: #10b981;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .benefit-card {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dbeafe 100%);
+            padding: 2rem;
+            border-radius: 12px;
+            border-top: 3px solid #10b981;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .benefit-card .icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .benefit-card h3 {
+            color: #10b981;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .benefit-card p {
+            color: #475569;
+        }
+
+        /* Processes Section */
+        .processes {
+            padding: 5rem 5%;
+            background-color: #f8fafc;
+        }
+
+        .processes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .process-card {
+            background-color: #ffffff;
+            padding: 2rem;
+            border-radius: 12px;
+            border-top: 4px solid #38bdf8;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .process-card .process-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .process-card h3 {
+            color: #0f172a;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .process-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .process-list li {
+            padding: 0.5rem 0;
+            color: #64748b;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .process-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #38bdf8;
+            font-weight: bold;
+        }
+
+        .process-kpi {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #e2e8f0;
+            color: #f59e0b;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        /* Architecture Section */
+        .architecture {
+            padding: 5rem 5%;
+            background: linear-gradient(135deg, #020617 0%, #0f172a 100%);
+            color: #f1f5f9;
+        }
+
+        .architecture .section-title {
+            color: #f1f5f9;
+        }
+
+        .architecture .section-title .accent {
+            color: #38bdf8;
+        }
+
+        .arch-diagram {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: rgba(30, 41, 59, 0.5);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid #38bdf8;
+        }
+
+        .arch-layer {
+            margin: 1.5rem 0;
+            text-align: center;
+        }
+
+        .arch-items {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 1rem 0;
+        }
+
+        .arch-item {
+            background-color: #1e293b;
+            padding: 0.8rem 1.2rem;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            border-top: 2px solid #38bdf8;
+        }
+
+        .arch-arrow {
+            color: #38bdf8;
+            font-size: 1.5rem;
+            margin: 0.5rem 0;
+        }
+
+        /* KPI Section */
+        .kpi-section {
+            padding: 5rem 5%;
+            background-color: #ffffff;
+        }
+
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .kpi-card {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            color: #f1f5f9;
+            padding: 2rem;
+            border-radius: 12px;
+            border-left: 4px solid #38bdf8;
+            text-align: center;
+        }
+
+        .kpi-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #38bdf8;
+            margin-bottom: 0.5rem;
+        }
+
+        .kpi-label {
+            font-size: 0.9rem;
+            color: #cbd5e1;
+            margin-bottom: 0.5rem;
+        }
+
+        .kpi-desc {
+            font-size: 0.85rem;
+            color: #94a3b8;
+        }
+
+        /* Roadmap Section */
+        .roadmap {
+            padding: 5rem 5%;
+            background-color: #f8fafc;
+        }
+
+        .roadmap-timeline {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+        }
+
+        .roadmap-phase {
+            flex: 1;
+            background-color: #ffffff;
+            padding: 2rem;
+            border-radius: 12px;
+            border-left: 4px solid #38bdf8;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            text-align: center;
+        }
+
+        .roadmap-phase.phase-1 {
+            border-left-color: #10b981;
+        }
+
+        .roadmap-phase.phase-2 {
+            border-left-color: #38bdf8;
+        }
+
+        .roadmap-phase.phase-3 {
+            border-left-color: #f59e0b;
+        }
+
+        .phase-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .phase-duration {
+            color: #64748b;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .phase-content {
+            font-size: 0.95rem;
+            color: #475569;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #020617;
+            color: #f1f5f9;
+            text-align: center;
+            padding: 3rem 5%;
+            margin-top: 4rem;
+        }
+
+        footer p {
+            color: #cbd5e1;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-links a {
+            color: #38bdf8;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #0284c7;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .roadmap-timeline {
+                flex-direction: column;
+            }
+
+            .flow-steps {
+                flex-direction: column;
+            }
+
+            .flow-arrow {
+                transform: rotate(90deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <a href="#" class="logo">🚀 n8n Platform</a>
+        <ul class="nav-links">
+            <li><a href="#problems">Проблемы</a></li>
+            <li><a href="#benefits">Решения</a></li>
+            <li><a href="#processes">Процессы</a></li>
+            <li><a href="#kpi">Результаты</a></li>
+            <li><button class="btn-primary">Запрос демо</button></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Платформа автоматизации<br>процессов на базе <span class="highlight">n8n</span></h1>
+        <p>Сквозная автоматизация всех отделов производственной компании: от HR до финансов</p>
+        <div class="hero-buttons">
+            <button class="btn-primary">Начать бесплатно</button>
+            <button class="btn-secondary">Посмотреть демо</button>
+        </div>
+        <div class="hero-flow">
+            <div class="flow-steps">
+                <div class="flow-step">📧 Каналы</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">🔄 n8n</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">⚙️ Системы</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">📊 BI</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problems Section -->
+    <section class="problems" id="problems">
+        <h2 class="section-title">Текущие <span class="accent">боли</span> компании</h2>
+        <div class="problems-grid">
+            <div class="problem-card">
+                <div class="icon">📧</div>
+                <h3>Каналы разрозненны</h3>
+                <p>Email, WhatsApp, Telegram, звонки — всё врозь, информация теряется</p>
+            </div>
+            <div class="problem-card">
+                <div class="icon">❌</div>
+                <h3>Заявки теряются</h3>
+                <p>Нет единого входа, потери в процессе, невозможно отследить</p>
+            </div>
+            <div class="problem-card">
+                <div class="icon">⏱️</div>
+                <h3>Ручной контроль</h3>
+                <p>Ручная проверка сроков, согласований, эскалаций — времязатратно</p>
+            </div>
+            <div class="problem-card">
+                <div class="icon">📊</div>
+                <h3>Нет метрик</h3>
+                <p>SLA размыты, невозможно отследить проблемы и причины</p>
+            </div>
+            <div class="problem-card">
+                <div class="icon">🔍</div>
+                <h3>Слабая трассируемость</h3>
+                <p>Почему срвали сроки? Где ошибка? Ответа нет</p>
+            </div>
+            <div class="problem-card">
+                <div class="icon">💸</div>
+                <h3>Потери эффективности</h3>
+                <p>Простои, задержки, избыточные запасы, лишние расходы</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits" id="benefits">
+        <h2 class="section-title">Цели внедрения <span class="accent-green">платформы</span></h2>
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <div class="icon">⚡</div>
+                <h3>Убрать ручную рутину</h3>
+                <p>Автоматизировать 70% рутинных операций, освободить сотрудников для стратегии</p>
+            </div>
+            <div class="benefit-card">
+                <div class="icon">🎯</div>
+                <h3>Контроль SLA</h3>
+                <p>Автоматические эскалации, 100% прозрачность, ни один заказ не потеряется</p>
+            </div>
+            <div class="benefit-card">
+                <div class="icon">🚀</div>
+                <h3>Скорость реакции</h3>
+                <p>От часов к минутам в критичных процессах — быстро реагируем на изменения</p>
+            </div>
+            <div class="benefit-card">
+                <div class="icon">📐</div>
+                <h3>Единая архитектура</h3>
+                <p>Централизованные данные, полный аудит, видимость всего происходящего</p>
+            </div>
+            <div class="benefit-card">
+                <div class="icon">🤖</div>
+                <h3>Основа для AI</h3>
+                <p>Подготовка к машинному обучению, прогнозированию, предиктивному анализу</p>
+            </div>
+            <div class="benefit-card">
+                <div class="icon">💰</div>
+                <h3>Снижение затрат</h3>
+                <p>Сокращение ручного труда, оптимизация запасов, снижение потерь на 30-40%</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Architecture Section -->
+    <section class="architecture">
+        <h2 class="section-title">Принципиальная <span class="accent">архитектура</span></h2>
+        <div class="arch-diagram">
+            <div class="arch-layer">
+                <p style="color: #94a3b8; font-size: 0.9rem;">ВХОДЫ</p>
+                <div class="arch-items">
+                    <div class="arch-item">📧 Email</div>
+                    <div class="arch-item">💬 Telegram</div>
+                    <div class="arch-item">☎️ Телефония</div>
+                    <div class="arch-item">⚙️ CRM/ERP</div>
+                    <div class="arch-item">🏭 MES/SCADA</div>
+                </div>
+            </div>
+            <div class="arch-arrow">↓</div>
+            <div class="arch-layer">
+                <div style="background: linear-gradient(135deg, rgba(56, 189, 248, 0.2), rgba(6, 182, 212, 0.1)); border: 2px solid #38bdf8; border-radius: 8px; padding: 1.5rem; margin: 0 auto; max-width: 400px;">
+                    <p style="font-size: 1.3rem; font-weight: 700; color: #38bdf8; margin-bottom: 0.5rem;">🔄 N8N - Process Bus</p>
+                    <p style="font-size: 0.9rem; color: #cbd5e1;">Маршрутизация • Согласования • Задачи • SLA • Уведомления</p>
+                </div>
+            </div>
+            <div class="arch-arrow">↓</div>
+            <div class="arch-layer">
+                <p style="color: #94a3b8; font-size: 0.9rem;">ВЫХОДЫ</p>
+                <div class="arch-items">
+                    <div class="arch-item">📊 BI Dashboard</div>
+                    <div class="arch-item">🔐 PostgreSQL</div>
+                    <div class="arch-item">📝 Журнал аудита</div>
+                    <div class="arch-item">🔔 Оповещения</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Processes Section -->
+    <section class="processes" id="processes">
+        <h2 class="section-title">Сквозные процессы автоматизации</h2>
+        <div class="processes-grid">
+            <div class="process-card">
+                <div class="process-icon">👥</div>
+                <h3>HR: найм и онбординг</h3>
+                <ul class="process-list">
+                    <li>Автоответы + скоринг CV</li>
+                    <li>Воронка найма в одной системе</li>
+                    <li>Автоонбординг (доступы, пропуск)</li>
+                    <li>Обучение с отслеживанием</li>
+                </ul>
+                <div class="process-kpi">📈 Time-to-Hire: 30→10 дней</div>
+            </div>
+
+            <div class="process-card">
+                <div class="process-icon">💰</div>
+                <h3>Продажи: лиды не теряются</h3>
+                <ul class="process-list">
+                    <li>Единый вход всех лидов</li>
+                    <li>Справедливое распределение</li>
+                    <li>SLA контроль с эскалациями</li>
+                    <li>Автодокументы (КП, счёт)</li>
+                </ul>
+                <div class="process-kpi">⏰ Ответ на лид: 2ч → 15 мин</div>
+            </div>
+
+            <div class="process-card">
+                <div class="process-icon">📣</div>
+                <h3>Маркетинг: аналитика рынка</h3>
+                <ul class="process-list">
+                    <li>Мониторинг конкурентов</li>
+                    <li>Отслеживание упоминаний</li>
+                    <li>ROMI по каналам</li>
+                    <li>Оптимизация бюджета</li>
+                </ul>
+                <div class="process-kpi">🎯 ROI на основе данных</div>
+            </div>
+
+            <div class="process-card">
+                <div class="process-icon">🛒</div>
+                <h3>Закупки: от заявки к поставке</h3>
+                <ul class="process-list">
+                    <li>Автозаявки по уровню</li>
+                    <li>Сбор и сравнение КП</li>
+                    <li>Контроль сроков поставок</li>
+                    <li>Сверка документов</li>
+                </ul>
+                <div class="process-kpi">✓ OTD поставщиков ↑ 20-30%</div>
+            </div>
+
+            <div class="process-card">
+                <div class="process-icon">🏭</div>
+                <h3>Производство: план-факт</h3>
+                <ul class="process-list">
+                    <li>План из заказов автоматом</li>
+                    <li>Сменные задания рабочим</li>
+                    <li>Учёт выпуска в реал-тайме</li>
+                    <li>Контроль простоев</li>
+                </ul>
+                <div class="process-kpi">⚡ OEE ↑ 15-20%, видимость 24/7</div>
+            </div>
+
+            <div class="process-card">
+                <div class="process-icon">🔍</div>
+                <h3>Качество: CAPA и рекламации</h3>
+                <ul class="process-list">
+                    <li>Регистрация брака</li>
+                    <li>CAPA процесс с контролем</li>
+                    <li>Рекламации поставщикам</li>
+                    <li>Анализ Pareto причин</li>
+                </ul>
+                <div class="process-kpi">🎯 Брак ↓ 25-40%</div>
+            </div>
+
+            <div class="process-card">
+                <div class="process-icon">📦</div>
+                <h3>Склад: запасы под контролем</h3>
+                <ul class="process-list">
+                    <li>Min/max контроль уровней</li>
+                    <li>Автозаявки на закупку</li>
+                    <li>Трекинг отгрузок GPS</li>
+                    <li>Инвентаризация</li>
+                </ul>
+                <div class="process-kpi">📈 Оборачиваемость ↑ на 30%</div>
+            </div>
+
+            <div class="process-card">
+                <div class="process-icon">💳</div>
+                <h3>Финансы: деньги под контролем</h3>
+                <ul class="process-list">
+                    <li>Маршруты одобрений платежей</li>
+                    <li>ДДС: план vs факт</li>
+                    <li>Управление дебиторкой</li>
+                    <li>Договоры по шаблону</li>
+                </ul>
+                <div class="process-kpi">💵 DSO ↓ на 10-15 дней</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- KPI Section -->
+    <section class="kpi-section" id="kpi">
+        <h2 class="section-title">Ключевые метрики <span class="accent-green">успеха</span></h2>
+        <div class="kpi-grid">
+            <div class="kpi-card">
+                <div class="kpi-value">95%+</div>
+                <div class="kpi-label">SLA Выполнение</div>
+                <div class="kpi-desc">Согласования и сделки в срок</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-value">+15-20%</div>
+                <div class="kpi-label">OEE Производства</div>
+                <div class="kpi-desc">Общая эффективность оборудования</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-value">-25-40%</div>
+                <div class="kpi-label">Снижение брака</div>
+                <div class="kpi-desc">Контроль качества процессов</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-value">-10-15 дн</div>
+                <div class="kpi-label">DSO Дебиторки</div>
+                <div class="kpi-desc">Ускорение оборачиваемости</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-value">+20-30%</div>
+                <div class="kpi-label">OTD Поставщиков</div>
+                <div class="kpi-desc">Поставки точно в срок</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-value">30→10 дн</div>
+                <div class="kpi-label">Time-to-Hire</div>
+                <div class="kpi-desc">Ускорение подбора кадров</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Roadmap Section -->
+    <section class="roadmap">
+        <h2 class="section-title">Roadmap внедрения</h2>
+        <div class="roadmap-timeline">
+            <div class="roadmap-phase phase-1">
+                <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">⚡</div>
+                <div class="phase-title">Этап 1</div>
+                <div class="phase-duration">2–6 недель</div>
+                <div class="phase-content">
+                    <p><strong>Quick wins</strong></p>
+                    <p>HR + Продажи</p>
+                    <p>Первые результаты</p>
+                </div>
+            </div>
+            <div class="roadmap-phase phase-2">
+                <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">🔧</div>
+                <div class="phase-title">Этап 2</div>
+                <div class="phase-duration">2–4 месяца</div>
+                <div class="phase-content">
+                    <p><strong>Core automation</strong></p>
+                    <p>Закупки + Склад</p>
+                    <p>Основные процессы</p>
+                </div>
+            </div>
+            <div class="roadmap-phase phase-3">
+                <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">🚀</div>
+                <div class="phase-title">Этап 3</div>
+                <div class="phase-duration">4–9 месяцев</div>
+                <div class="phase-content">
+                    <p><strong>Production + AI</strong></p>
+                    <p>Производство + Качество</p>
+                    <p>Готово к работе</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <h3>Готовы трансформировать вашу компанию?</h3>
+        <p>Запросите демонстрацию платформы прямо сейчас</p>
+        <button class="btn-primary" style="margin: 2rem 0;">Запрос демо</button>
+        <div class="footer-links">
+            <a href="#">О нас</a>
+            <a href="#">Возможности</a>
+            <a href="#">Документация</a>
+            <a href="#">Контакты</a>
+        </div>
+        <p>&copy; 2026 n8n Automation Platform. Все права защищены.</p>
+    </footer>
+
+</body>
+</html>
