@@ -511,12 +511,18 @@
                 transform: rotate(90deg);
             }
         }
-    </style>
+    
+/* Anchor offset for fixed header: keeps section titles from sticking to the top when using #links */
+:root { --header-offset: 120px; }
+@media (max-width: 768px) { :root { --header-offset: 96px; } }
+section[id] { scroll-margin-top: var(--header-offset); }
+
+</style>
 </head>
 <body>
     <!-- Navigation -->
     <nav>
-        <a href="#" class="logo"><img src="https://i.imgur.com/rUW4Wth.jpg" alt="SVPROF" style="height: 50px; object-fit: contain; display: block;"></a>
+        <a href="#" class="logo"><img src="svprof_logo.png" alt="SVPROF" style="height: 50px; object-fit: contain; display: block;"></a>
         <ul class="nav-links">
             <li><a href="#problems">Проблемы</a></li>
             <li><a href="#benefits">Решения</a></li>
@@ -529,7 +535,7 @@
 
     <!-- Hero Section -->
     <section class="hero">
-        <h1>Автоматизация Ваших процессов на базе платформы n8n</h1>
+        <h1>Автоматизация Ваших процессов<br>на базе платформы <span class="highlight">n8n</span></h1>
         <p>Сквозная автоматизация всех отделов производственной компании: от HR до финансов</p>
         <div class="hero-buttons">
             <button class="btn-primary">Начать бесплатно</button>
@@ -575,7 +581,7 @@
             <div class="problem-card">
                 <div class="icon">🔍</div>
                 <h3>Слабая трассируемость</h3>
-                <p>Почему срвали сроки? Где ошибка? Ответа нет</p>
+                <p>Почему сорвали сроки? Где ошибка? Ответа нет</p>
             </div>
             <div class="problem-card">
                 <div class="icon">💸</div>
