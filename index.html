@@ -516,14 +516,17 @@
 <body>
     <!-- Navigation -->
     <nav>
-                <a href="#" style="height: 45px; display: flex; align-items: center; text-decoration: none;"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 50'%3E%3Cdefs%3E%3ClinearGradient id='grad'%3E%3Cstop offset='0%25' style='stop-color:%2300d4ff'/%3E%3Cstop offset='100%25' style='stop-color:%230099cc'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpolygon points='10,20 15,10 20,20' fill='url(%23grad)'/%3E%3Ccircle cx='30' cy='15' r='7' fill='url(%23grad)'/%3E%3Crect x='40' y='10' width='8' height='10' fill='url(%23grad)'/%3E%3Cline x1='50' y1='20' x2='55' y2='8' stroke='url(%23grad)' stroke-width='2'/%3E%3Ctext x='65' y='22' font-family='Arial' font-size='16' fill='%2300d4ff' font-weight='bold'%3ESVPROF%3C/text%3E%3C/svg%3E.png" alt="SVPROF Logo" style="height: 100%; width: auto;"></a>; align-items: center; gap: 0.5rem; text-decoration: none; font-size: 1.2rem; font-weight: 700; color: #00d4ff;">🔷 SVPROF</a>            <li><a href="#benefits">Решения</a></li>
+        <a href="#" class="logo">🚀 n8n Platform</a>
+        <ul class="nav-links">
+            <li><a href="#problems">Проблемы</a></li>
+            <li><a href="#benefits">Решения</a></li>
             <li><a href="#processes">Процессы</a></li>
-                    <svg class="logo" style="display: flex; align-items: center; gap: 0.5rem; text-decoration: none; font-size: 1.2rem; font-weight: 700; color: #38bdf8;" viewBox="0 0 200 50" width="180" height="45" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#00d4ff;stop-opacity:1" /><stop offset="100%" style="stop-color:#0099cc;stop-opacity:1" /></linearGradient></defs><rect x="8" y="12" width="14" height="14" rx="2" fill="url(#grad1)" /><circle cx="30" cy="19" r="8" fill="url(#grad1)" opacity="0.6" /><polygon points="40,8 48,14 48,24 40,30 32,24 32,14" fill="url(#grad1)" opacity="0.4" /><text x="55" y="25" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#00d4ff">SVPROF</text></svg>            <li><a href="#contacts">Контакты</a></li>
+            <li><a href="#kpi">Результаты</a></li>
             <li><button class="btn-primary">Запрос демо</button></li>
         </ul>
     </nav>
 
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 50" width="180" height="45" style="display: inline-block; margin-right: 0.5rem;"><defs><linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#00d4ff;stop-opacity:1" /><stop offset="100%" style="stop-color:#0099cc;stop-opacity:1" /></linearGradient></defs><g><path d="M 20 15 L 30 8 L 30 22 Z" fill="url(#grad)" /><circle cx="45" cy="15" r="7" fill="url(#grad)" opacity="0.7" /><rect x="55" y="10" width="8" height="10" fill="url(#grad)" /><text x="75" y="22" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#00d4ff">SVPROF</text></g></svg>
+    <!-- Hero Section -->
     <section class="hero">
         <h1>Платформа автоматизации<br>процессов на базе <span class="highlight">n8n</span></h1>
         <p>Сквозная автоматизация всех отделов производственной компании: от HR до финансов</p>
@@ -571,7 +574,7 @@
             <div class="problem-card">
                 <div class="icon">🔍</div>
                 <h3>Слабая трассируемость</h3>
-                <p>Почему срвали сроки? Где ошибка? Ответа нет</p>
+                <p>Почему сорвали сроки? Где ошибка? Ответа нет</p>
             </div>
             <div class="problem-card">
                 <div class="icon">💸</div>
@@ -828,36 +831,6 @@
         </div>
     </section>
 
-    <!-- Contacts Section -->
-    <section id="contacts" style="padding: 5rem 5%; background: linear-gradient(135deg, #020617 0%, #0f172a 100%); color: #f1f5f9;">
-        <h2 style="font-size: 2.5rem; text-align: center; margin-bottom: 3rem;">Контакты</h2>
-        <div style="max-width: 800px; margin: 0 auto; background-color: rgba(30, 41, 59, 0.6); padding: 3rem; border-radius: 12px; border: 1px solid #38bdf8;">
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
-                <!-- Email Card -->
-                <div style="text-align: center; padding: 2rem; background-color: rgba(56, 189, 248, 0.1); border-radius: 8px; border-top: 3px solid #38bdf8;">
-                    <div style="font-size: 2.5rem; margin-bottom: 1rem;">📧</div>
-                    <h3 style="color: #38bdf8; margin-bottom: 0.5rem; font-size: 1.2rem;">Email</h3>
-                    <a href="mailto:info@svprof.ru" style="color: #cbd5e1; text-decoration: none; font-size: 1.1rem; font-weight: 500; transition: color 0.3s;">
-                        info@svprof.ru
-                    </a>
-                    <p style="color: #94a3b8; font-size: 0.9rem; margin-top: 0.5rem;">Напишите нам в любое время</p>
-                </div>
-                <!-- Telegram Card -->
-                <div style="text-align: center; padding: 2rem; background-color: rgba(0, 136, 204, 0.1); border-radius: 8px; border-top: 3px solid #0088cc;">
-                    <div style="font-size: 2.5rem; margin-bottom: 1rem;">💬</div>
-                    <h3 style="color: #0088cc; margin-bottom: 0.5rem; font-size: 1.2rem;">Telegram</h3>
-                    <a href="https://t.me/svprof_bot" style="color: #cbd5e1; text-decoration: none; font-size: 1.1rem; font-weight: 500; transition: color 0.3s;">
-                        @svprof_bot
-                    </a>
-                    <p style="color: #94a3b8; font-size: 0.9rem; margin-top: 0.5rem;">Быстрый ответ в мессенджере</p>
-                </div>
-            </div>
-            <p style="text-align: center; color: #94a3b8; margin-top: 2rem; padding-top: 2rem; border-top: 1px solid #334155;">
-                Мы ответим в течение 24 часов
-            </p>
-        </div>
-    </section>
-
     <!-- Footer -->
     <footer>
         <h3>Готовы трансформировать вашу компанию?</h3>
@@ -867,7 +840,7 @@
             <a href="#">О нас</a>
             <a href="#">Возможности</a>
             <a href="#">Документация</a>
-            <a href="#contacts">Контакты</a>
+            <a href="#">Контакты</a>
         </div>
         <p>&copy; 2026 n8n Automation Platform. Все права защищены.</p>
     </footer>
