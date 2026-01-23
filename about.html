@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SVProf — Контакты</title>
+    <title>SVProf — О нас</title>
     <style>
         * {
             margin: 0;
@@ -788,32 +788,27 @@ section[id] { scroll-margin-top: var(--header-offset); }
 </head>
 <body>
 
-    <!-- Navigation -->
-    
-    
     
     <nav>
         <a href="about.html" class="logo"><img src="svprof_logo.png" alt="SVPROF" style="height: 75px; object-fit: contain; display: block;"></a>
         <ul class="nav-links">
-            <li><a href="about.html">О нас</a></li>
+            <li><a href="about.html" class="active">О нас</a></li>
             <li><a href="automation/audit.html">Аудит</a></li>
             <li><a href="automation/index.html">Автоматизация</a></li>
             <li><a href="bi.html">BI</a></li>
-            <li><a href="contacts.html" class="active">Контакты</a></li>
+            <li><a href="contacts.html">Контакты</a></li>
             <li><a class="btn-primary" href="contacts.html">Запрос демо</a></li>
         </ul>
     </nav>
 
 
 
-
-
     <section class="hero">
-        <h1>Контакты</h1>
-        <p>Напишите — предложу план автоматизации и быстрые улучшения под ваши процессы.</p>
+        <h1>SVProf — автоматизация и аналитика для производственных компаний</h1>
+        <p>Я помогаю навести порядок в процессах, убрать ручную рутину и собрать управляемость: интеграции, боты, документооборот, DWH/BI и AI‑ассистенты.</p>
         <div class="hero-buttons">
             <a class="btn-primary" href="automation/audit.html">Пройти экспресс‑аудит</a>
-            <a class="btn-secondary" href="automation/index.html">К разделу «Автоматизация»</a>
+            <a class="btn-secondary" href="contacts.html">Связаться</a>
         </div>
         <div class="hero-flow">
             <div class="flow-steps">
@@ -828,34 +823,62 @@ section[id] { scroll-margin-top: var(--header-offset); }
         </div>
     </section>
 
-<section id="contacts" style="padding: 5rem 5%; background: linear-gradient(135deg, #020617 0%, #0f172a 100%); color: #f1f5f9;">
-        <h2 style="font-size: 2.5rem; text-align: center; margin-bottom: 3rem;">Контакты</h2>
-        <div style="max-width: 800px; margin: 0 auto; background-color: rgba(30, 41, 59, 0.6); padding: 3rem; border-radius: 12px; border: 1px solid #38bdf8;">
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
-                <!-- Email Card -->
-                <div style="text-align: center; padding: 2rem; background-color: rgba(56, 189, 248, 0.1); border-radius: 8px; border-top: 3px solid #38bdf8;">
-                    <div style="font-size: 2.5rem; margin-bottom: 1rem;">📧</div>
-                    <h3 style="color: #38bdf8; margin-bottom: 0.5rem; font-size: 1.2rem;">Email</h3>
-                    <a href="mailto:info@svprof.ru" style="color: #cbd5e1; text-decoration: none; font-size: 1.1rem; font-weight: 500; transition: color 0.3s;">
-                        info@svprof.ru
-                    </a>
-                    <p style="color: #94a3b8; font-size: 0.9rem; margin-top: 0.5rem;">Напишите нам в любое время</p>
-                </div>
-                <!-- Telegram Card -->
-                <div style="text-align: center; padding: 2rem; background-color: rgba(0, 136, 204, 0.1); border-radius: 8px; border-top: 3px solid #0088cc;">
-                    <div style="font-size: 2.5rem; margin-bottom: 1rem;">💬</div>
-                    <h3 style="color: #0088cc; margin-bottom: 0.5rem; font-size: 1.2rem;">Telegram</h3>
-                    <a href="https://t.me/svprof_bot" style="color: #cbd5e1; text-decoration: none; font-size: 1.1rem; font-weight: 500; transition: color 0.3s;">
-                        @svprof_bot
-                    </a>
-                    <p style="color: #94a3b8; font-size: 0.9rem; margin-top: 0.5rem;">Быстрый ответ в мессенджере</p>
-                </div>
+
+    <section class="benefits" id="about">
+        <h2 class="section-title">Обо мне и подходе</h2>
+        <div class="benefits-container">
+            <div class="benefit-card">
+                <h3>Фокус</h3>
+                <p>Производственные и производственно‑коммерческие компании: где много операций, документов и контроля исполнения.</p>
             </div>
-            <p style="text-align: center; color: #94a3b8; margin-top: 2rem; padding-top: 2rem; border-top: 1px solid #334155;">
-                Мы ответим в течение 24 часов
-            </p>
+            <div class="benefit-card">
+                <h3>Что внедряю</h3>
+                <p>Интеграции (1С/ERP/CRM), автоматизация согласований, алерты, боты, сбор данных и витрины для BI.</p>
+            </div>
+            <div class="benefit-card">
+                <h3>Инструменты</h3>
+                <p>n8n + PostgreSQL + API/вебхуки + BI (Power BI) + AI‑ассистенты для поиска/ответов/классификации.</p>
+            </div>
+            <div class="benefit-card">
+                <h3>Как работаем</h3>
+                <p>Экспресс‑аудит → выбор 1–3 приоритетов → пилот 2–4 недели → масштабирование на остальные процессы.</p>
+            </div>
         </div>
     </section>
+
+    <section class="kpi" id="values">
+        <h2 class="section-title">Что вы получаете</h2>
+        <div class="kpi-container">
+            <div class="kpi-item">
+                <div class="kpi-number">−20–60%</div>
+                <div class="kpi-label">ручной рутины</div>
+            </div>
+            <div class="kpi-item">
+                <div class="kpi-number">+15–40%</div>
+                <div class="kpi-label">скорости обработки</div>
+            </div>
+            <div class="kpi-item">
+                <div class="kpi-number">↓</div>
+                <div class="kpi-label">ошибок и потерь заявок</div>
+            </div>
+            <div class="kpi-item">
+                <div class="kpi-number">↑</div>
+                <div class="kpi-label">прозрачности и контроля</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta" id="start">
+        <h2 class="section-title">Начнём с диагностики</h2>
+        <p style="max-width: 900px; margin: 0 auto; text-align:center; color:#94a3b8;">
+            Пройдите экспресс‑аудит — получите индекс зрелости 0–100 и рекомендации по первым шагам автоматизации.
+        </p>
+        <div class="hero-buttons" style="justify-content:center; margin-top: 1.25rem;">
+            <a class="btn-primary" href="automation/audit.html">Пройти экспресс‑аудит</a>
+            <a class="btn-secondary" href="contacts.html">Связаться</a>
+        </div>
+    </section>
+
 <footer>
         <h3>Готовы трансформировать вашу компанию?</h3>
         <p>Запросите демонстрацию платформы прямо сейчас</p>
@@ -868,168 +891,5 @@ section[id] { scroll-margin-top: var(--header-offset); }
         </div>
         <p>&copy; 2026 n8n Automation Platform. Все права защищены.</p>
     </footer>
-<script>
-(function(){
-  const form = document.getElementById('auditForm');
-  if(!form) return;
-
-  const selects = Array.from(form.querySelectorAll('select'));
-  const scoreValue = document.getElementById('scoreValue');
-  const scoreLevel = document.getElementById('scoreLevel');
-  const scoreNeed = document.getElementById('scoreNeed');
-  const completionBadge = document.getElementById('completionBadge');
-  const progressBar = document.getElementById('progressBar');
-  const recommendCard = document.getElementById('recommendCard');
-  const recommendText = document.getElementById('recommendText');
-
-  const totalQuestions = selects.length;
-  const maxPerQ = 3;
-  const maxTotal = totalQuestions * maxPerQ;
-
-  function clamp(n, a, b){ return Math.min(Math.max(n,a),b); }
-
-  function getMaturity(){
-    let answered = 0;
-    let sum = 0;
-    const blockSum = {A:0,B:0,C:0,D:0};
-    const blockCnt = {A:0,B:0,C:0,D:0};
-
-    selects.forEach(sel => {
-      const v = sel.value;
-      const q = sel.closest('.q');
-      const block = (q && q.dataset && q.dataset.block) ? q.dataset.block : 'A';
-      blockCnt[block] += 1;
-
-      if(v !== ''){
-        answered += 1;
-        const num = parseInt(v,10);
-        if(!isNaN(num)) { sum += num; blockSum[block] += num; }
-      }
-    });
-
-    const maturity = answered ? Math.round((sum / maxTotal) * 100) : null;
-    const completion = Math.round((answered / totalQuestions) * 100);
-
-    const blockAvg = {};
-    Object.keys(blockSum).forEach(k => {
-      blockAvg[k] = blockCnt[k] ? (blockSum[k] / (blockCnt[k]*maxPerQ)) : 0; // 0..1
-    });
-
-    return { maturity, answered, completion, blockAvg };
-  }
-
-  function levelFromScore(score){
-    if(score === null) return {label: "Заполните ответы, чтобы увидеть результат", emoji:"📝"};
-    if(score <= 25) return {label:"Ручное управление. Высокий потенциал эффекта от автоматизации.", emoji:"🔥"};
-    if(score <= 50) return {label:"Частичная управляемость. Есть быстрые точки автоматизации (2–4 недели).", emoji:"⚡"};
-    if(score <= 75) return {label:"Хорошая база. Нужны интеграции, регламенты и BI‑контур.", emoji:"✅"};
-    return {label:"Высокая зрелость. Можно внедрять AI‑агентов и предиктивную аналитику.", emoji:"🤖"};
-  }
-
-  function recommendations(blockAvg){
-    // lower avg => more pain
-    const entries = Object.entries(blockAvg).sort((a,b)=>a[1]-b[1]);
-    const top = entries.slice(0,2).map(x=>x[0]);
-
-    const map = {
-      A: {
-        title:"Поток операций и ручная рутина",
-        quick:["Интеграции между системами (убрать копипаст)", "Автоматизация отчетов и выгрузок", "Единый реестр заявок/операций + уведомления"]
-      },
-      B: {
-        title:"Продажи и сервис",
-        quick:["Единый вход заявок из всех каналов", "SLA‑контроль: напоминания/эскалации", "Автогенерация КП/счетов/договоров"]
-      },
-      C: {
-        title:"Деньги и документооборот",
-        quick:["Маршруты согласований оплат/счетов/договоров", "Платежный календарь + прогноз ДДС", "Автоконтроль дебиторки и просрочек"]
-      },
-      D: {
-        title:"Данные и аналитика",
-        quick:["Очистка НСИ/справочников (дубли, ошибки)", "Витрина данных + BI‑дашборды", "Подготовка базы для AI (FAQ, классификация, поиск)"]
-      }
-    };
-
-    const blocks = top.map(k => map[k]);
-    const text = `
-      <p><strong>ТОП‑зоны потерь:</strong> ${blocks.map(b=>b.title).join(", ")}.</p>
-      <p><strong>Quick wins (что можно сделать в первую очередь):</strong></p>
-      <ol style="margin:0.5rem 0 0 1.2rem;">
-        ${blocks.flatMap(b=>b.quick.slice(0,2)).slice(0,3).map(x=>`<li>${x}</li>`).join("")}
-      </ol>
-    `;
-    return text;
-  }
-
-  function updateUI(){
-    const {maturity, answered, completion, blockAvg} = getMaturity();
-
-    completionBadge.textContent = `${answered}/${totalQuestions}`;
-    progressBar.style.width = `${clamp(completion,0,100)}%`;
-
-    if(maturity === null){
-      scoreValue.textContent = "—";
-      scoreLevel.textContent = "Заполните ответы, чтобы увидеть результат";
-      scoreNeed.textContent = "";
-      recommendCard.style.display = "none";
-      return;
-    }
-
-    scoreValue.textContent = `${maturity}/100`;
-    const lvl = levelFromScore(maturity);
-    scoreLevel.textContent = `${lvl.emoji} ${lvl.label}`;
-
-    const need = 100 - maturity;
-    scoreNeed.textContent = `Потенциал эффекта: примерно ${need}/100 (чем выше — тем больше “запас” улучшений).`;
-
-    // show recommendations once > 50% answered
-    if(answered >= Math.ceil(totalQuestions*0.5)){
-      recommendText.innerHTML = recommendations(blockAvg);
-      recommendCard.style.display = "block";
-    } else {
-      recommendCard.style.display = "none";
-    }
-  }
-
-  // init
-  selects.forEach(sel => sel.addEventListener('change', updateUI));
-  updateUI();
-
-  form.addEventListener('submit', function(e){
-    e.preventDefault();
-    updateUI();
-    // мягко прокручиваем к карточке результата
-    document.getElementById('scoreCard')?.scrollIntoView({behavior:'smooth', block:'start'});
-  });
-
-  document.getElementById('resetAudit')?.addEventListener('click', function(){
-    selects.forEach(s => s.value = "");
-    updateUI();
-  });
-
-  document.getElementById('copyAudit')?.addEventListener('click', async function(){
-    const {maturity, answered} = getMaturity();
-    const text = maturity === null
-      ? "Экспресс-аудит SVProf: результат пока не рассчитан — заполните вопросы."
-      : `Экспресс-аудит SVProf: индекс зрелости ${maturity}/100. Заполнено ${answered}/${totalQuestions}.`;
-    try{
-      await navigator.clipboard.writeText(text);
-      this.textContent = "Скопировано ✓";
-      setTimeout(()=>this.textContent="Скопировать результат", 1500);
-    } catch(err){
-      alert("Не удалось скопировать. Вы можете выделить и скопировать текст вручную: " + text);
-    }
-  });
-
-  // Smooth scroll for buttons/links with data-scroll
-  document.querySelectorAll('[data-scroll]').forEach(el=>{
-    el.addEventListener('click', function(){
-      const target = this.getAttribute('data-scroll');
-      if(!target) return;
-      const node = document.querySelector(target);
-      if(node) node.scrollIntoView({behavior:'smooth', block:'start'});
-    });
-  });
-})();
-</script>
 </body>
+</html>
