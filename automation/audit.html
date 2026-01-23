@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SVProf — Автоматизация: Экспресс‑аудит</title>
+    <title>SVProf — Аудит</title>
     <style>
         * {
             margin: 0;
@@ -705,7 +705,49 @@ section[id] { scroll-margin-top: var(--header-offset); }
             .audit-side{ position: static; }
             .q{ grid-template-columns: 1fr; }
         }
-/* Active nav item */
+
+
+        /* Multi-page nav dropdown */
+        .nav-links .dropdown { position: relative; }
+        .nav-links .dropdown-menu{
+            display:none;
+            position:absolute;
+            top: 100%;
+            left: 0;
+            background: rgba(15, 23, 42, 0.98);
+            border: 1px solid rgba(56,189,248,0.25);
+            border-radius: 12px;
+            padding: 0.6rem;
+            min-width: 220px;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+            z-index: 999;
+        }
+        .nav-links .dropdown-menu li{ margin: 0; }
+        .nav-links .dropdown-menu a{
+            display:block;
+            padding: 0.55rem 0.75rem;
+            border-radius: 10px;
+            color: #e2e8f0;
+            text-decoration: none;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+        .nav-links .dropdown-menu a:hover{
+            background: rgba(56,189,248,0.14);
+            color: #ffffff;
+        }
+        .nav-links .dropdown:hover .dropdown-menu{ display:block; }
+
+        /* Allow button style on <a> */
+        a.btn-primary, a.btn-secondary{
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+        }
+
+
+        /* Active nav item */
         .nav-links a.active{
             color: #38bdf8 !important;
         }
@@ -720,6 +762,16 @@ section[id] { scroll-margin-top: var(--header-offset); }
         .nav-links .dropdown > a.active{
             color: #38bdf8 !important;
         }
+
+
+        /* Align nav items to the right (like earlier version) */
+        nav { justify-content: flex-start; }
+        .nav-links { margin-left: auto; }
+
+
+        /* Force nav links to the right (override any centering) */
+        nav { display:flex; align-items:center; justify-content:flex-start; gap: 1.5rem; }
+        .nav-links { margin-left:auto !important; display:flex; align-items:center; gap: 2rem; }
 
 </style>
     <!-- Favicon -->
@@ -738,15 +790,21 @@ section[id] { scroll-margin-top: var(--header-offset); }
 
     <!-- Navigation -->
     
+    
+    
     <nav>
-        <a href="../automation/index.html" class="logo"><img src="../svprof_logo.png" alt="SVPROF" style="height: 75px; object-fit: contain; display: block;"></a>
+        <a href="../about.html" class="logo"><img src="../svprof_logo.png" alt="SVPROF" style="height: 75px; object-fit: contain; display: block;"></a>
         <ul class="nav-links">
-            <li><a href="../automation/audit.html" class="active">Аудит</a></li>
-            <li><a href="../automation/index.html">Автоматизация</a></li>
+            <li><a href="../about.html">О нас</a></li>
+            <li><a href="audit.html" class="active">Аудит</a></li>
+            <li><a href="index.html">Автоматизация</a></li>
+            <li><a href="../bi.html">BI</a></li>
             <li><a href="../contacts.html">Контакты</a></li>
+            <li><a class="btn-primary" href="../contacts.html">Запрос демо</a></li>
         </ul>
-        <a class="btn-primary" href="../contacts.html">Запрос демо</a>
     </nav>
+
+
 
 
 
@@ -1346,4 +1404,3 @@ section[id] { scroll-margin-top: var(--header-offset); }
 })();
 </script>
 </body>
-</html>
