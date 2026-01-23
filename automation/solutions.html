@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SVProf — Автоматизация: Решения</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #0f172a;
+            background-color: #ffffff;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5%;
+            background-color: #020617;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #38bdf8;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #f1f5f9;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #38bdf8;
+        }
+
+        .btn-primary {
+            background-color: #38bdf8;
+            color: #0f172a;
+            padding: 0.7rem 1.5rem;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn-primary:hover {
+            background-color: #0284c7;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #020617 0%, #0f172a 100%);
+            color: #f1f5f9;
+            padding: 6rem 5%;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero .highlight {
+            color: #38bdf8;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: #cbd5e1;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 3rem;
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: #f1f5f9;
+            padding: 0.8rem 2rem;
+            border: 2px solid #38bdf8;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-secondary:hover {
+            background-color: #38bdf8;
+            color: #0f172a;
+        }
+
+        .hero-flow {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+            background-color: rgba(56, 189, 248, 0.1);
+            border-radius: 12px;
+            border: 1px solid #38bdf8;
+        }
+
+        .flow-steps {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .flow-step {
+            background-color: #1e293b;
+            padding: 0.8rem 1.2rem;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            color: #cbd5e1;
+            border-top: 3px solid #38bdf8;
+        }
+
+        .flow-arrow {
+            color: #38bdf8;
+            font-size: 1.5rem;
+        }
+
+        /* Problems Section */
+        .problems {
+            padding: 5rem 5%;
+            background-color: #f8fafc;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #0f172a;
+        }
+
+        .section-title .accent {
+            color: #f43f5e;
+        }
+
+        .problems-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .problem-card {
+            background-color: #ffffff;
+            padding: 2rem;
+            border-radius: 12px;
+            border-left: 4px solid #f43f5e;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .problem-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+        }
+
+        .problem-card .icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .problem-card h3 {
+            color: #f43f5e;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .problem-card p {
+            color: #64748b;
+        }
+
+        /* Benefits Section */
+        .benefits {
+            padding: 5rem 5%;
+            background-color: #ffffff;
+        }
+
+        .section-title .accent-green {
+            color: #10b981;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .benefit-card {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dbeafe 100%);
+            padding: 2rem;
+            border-radius: 12px;
+            border-top: 3px solid #10b981;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .benefit-card .icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .benefit-card h3 {
+            color: #10b981;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .benefit-card p {
+            color: #475569;
+        }
+
+        /* Processes Section */
+        .processes {
+            padding: 5rem 5%;
+            background-color: #f8fafc;
+        }
+
+        .processes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .process-card {
+            background-color: #ffffff;
+            padding: 2rem;
+            border-radius: 12px;
+            border-top: 4px solid #38bdf8;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .process-card .process-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .process-card h3 {
+            color: #0f172a;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .process-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .process-list li {
+            padding: 0.5rem 0;
+            color: #64748b;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .process-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #38bdf8;
+            font-weight: bold;
+        }
+
+        .process-kpi {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #e2e8f0;
+            color: #f59e0b;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        /* Architecture Section */
+        .architecture {
+            padding: 5rem 5%;
+            background: linear-gradient(135deg, #020617 0%, #0f172a 100%);
+            color: #f1f5f9;
+        }
+
+        .architecture .section-title {
+            color: #f1f5f9;
+        }
+
+        .architecture .section-title .accent {
+            color: #38bdf8;
+        }
+
+        .arch-diagram {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: rgba(30, 41, 59, 0.5);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid #38bdf8;
+        }
+
+        .arch-layer {
+            margin: 1.5rem 0;
+            text-align: center;
+        }
+
+        .arch-items {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 1rem 0;
+        }
+
+        .arch-item {
+            background-color: #1e293b;
+            padding: 0.8rem 1.2rem;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            border-top: 2px solid #38bdf8;
+        }
+
+        .arch-arrow {
+            color: #38bdf8;
+            font-size: 1.5rem;
+            margin: 0.5rem 0;
+        }
+
+        /* KPI Section */
+        .kpi-section {
+            padding: 5rem 5%;
+            background-color: #ffffff;
+        }
+
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .kpi-card {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            color: #f1f5f9;
+            padding: 2rem;
+            border-radius: 12px;
+            border-left: 4px solid #38bdf8;
+            text-align: center;
+        }
+
+        .kpi-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #38bdf8;
+            margin-bottom: 0.5rem;
+        }
+
+        .kpi-label {
+            font-size: 0.9rem;
+            color: #cbd5e1;
+            margin-bottom: 0.5rem;
+        }
+
+        .kpi-desc {
+            font-size: 0.85rem;
+            color: #94a3b8;
+        }
+
+        /* Roadmap Section */
+        .roadmap {
+            padding: 5rem 5%;
+            background-color: #f8fafc;
+        }
+
+        .roadmap-timeline {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+        }
+
+        .roadmap-phase {
+            flex: 1;
+            background-color: #ffffff;
+            padding: 2rem;
+            border-radius: 12px;
+            border-left: 4px solid #38bdf8;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            text-align: center;
+        }
+
+        .roadmap-phase.phase-1 {
+            border-left-color: #10b981;
+        }
+
+        .roadmap-phase.phase-2 {
+            border-left-color: #38bdf8;
+        }
+
+        .roadmap-phase.phase-3 {
+            border-left-color: #f59e0b;
+        }
+
+        .phase-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .phase-duration {
+            color: #64748b;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .phase-content {
+            font-size: 0.95rem;
+            color: #475569;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #020617;
+            color: #f1f5f9;
+            text-align: center;
+            padding: 3rem 5%;
+            margin-top: 4rem;
+        }
+
+        footer p {
+            color: #cbd5e1;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-links a {
+            color: #38bdf8;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #0284c7;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .roadmap-timeline {
+                flex-direction: column;
+            }
+
+            .flow-steps {
+                flex-direction: column;
+            }
+
+            .flow-arrow {
+                transform: rotate(90deg);
+            }
+        }
+    
+/* Anchor offset for fixed header: keeps section titles from sticking to the top when using #links */
+:root { --header-offset: 120px; }
+@media (max-width: 768px) { :root { --header-offset: 96px; } }
+section[id] { scroll-margin-top: var(--header-offset); }
+
+
+        /* Audit Section */
+        .audit {
+            padding: 5rem 5%;
+            background-color: #ffffff;
+        }
+        .audit-wrap{
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 2rem;
+            align-items: start;
+        }
+        .audit-card{
+            background-color: #ffffff;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+            overflow: hidden;
+        }
+        .audit-head{
+            padding: 1.5rem 1.5rem 1rem 1.5rem;
+            background: linear-gradient(135deg, #020617 0%, #0f172a 100%);
+            color: #f1f5f9;
+            border-bottom: 1px solid rgba(56,189,248,0.35);
+        }
+        .audit-head h3{
+            font-size: 1.25rem;
+            margin-bottom: 0.4rem;
+        }
+        .audit-head p{
+            color: #cbd5e1;
+            font-size: 0.95rem;
+            margin: 0;
+        }
+        .audit-body{
+            padding: 1.5rem;
+        }
+        .audit-grid{
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+        .q{
+            display: grid;
+            grid-template-columns: 1fr 220px;
+            gap: 1rem;
+            padding: 0.9rem;
+            border-radius: 10px;
+            border: 1px solid #e2e8f0;
+            background: #f8fafc;
+        }
+        .q-title{
+            font-weight: 600;
+            color: #0f172a;
+            font-size: 0.95rem;
+        }
+        .q-hint{
+            color: #64748b;
+            font-size: 0.85rem;
+            margin-top: 0.25rem;
+        }
+        .q select{
+            width: 100%;
+            padding: 0.65rem 0.75rem;
+            border-radius: 8px;
+            border: 1px solid #cbd5e1;
+            background: #ffffff;
+            color: #0f172a;
+            font-weight: 600;
+        }
+        .audit-actions{
+            display:flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+        .btn-ghost{
+            background: transparent;
+            color: #0f172a;
+            padding: 0.7rem 1.2rem;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .btn-ghost:hover{
+            border-color: #38bdf8;
+            box-shadow: 0 2px 8px rgba(56,189,248,0.2);
+        }
+        .audit-side{
+            display: grid;
+            gap: 1rem;
+            position: sticky;
+            top: calc(var(--header-offset) + 10px);
+        }
+        .score-card{
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            color: #f1f5f9;
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid rgba(56,189,248,0.35);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.10);
+        }
+        .score-top{
+            display:flex;
+            justify-content: space-between;
+            gap: 1rem;
+            align-items: center;
+        }
+        .badge{
+            display:inline-flex;
+            align-items:center;
+            gap:0.5rem;
+            padding: 0.35rem 0.65rem;
+            border-radius: 999px;
+            font-size: 0.85rem;
+            font-weight: 800;
+            background: rgba(56,189,248,0.18);
+            border: 1px solid rgba(56,189,248,0.35);
+            color: #e2e8f0;
+            white-space: nowrap;
+        }
+        .progress{
+            margin-top: 1rem;
+            background: rgba(148,163,184,0.2);
+            border-radius: 999px;
+            overflow: hidden;
+            height: 10px;
+            border: 1px solid rgba(148,163,184,0.25);
+        }
+        .progress > div{
+            height: 100%;
+            width: 0%;
+            background: #38bdf8;
+            transition: width 0.2s;
+        }
+        .score-main{
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: #38bdf8;
+            margin-top: 0.7rem;
+        }
+        .score-sub{
+            color: #cbd5e1;
+            font-size: 0.95rem;
+            margin-top: 0.25rem;
+        }
+        .result-card{
+            background-color: #ffffff;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            padding: 1.25rem 1.5rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+        }
+        .result-card h4{
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: #0f172a;
+        }
+        .pill{
+            display:inline-block;
+            padding: 0.25rem 0.55rem;
+            border-radius: 999px;
+            font-size: 0.82rem;
+            font-weight: 800;
+            background: #f1f5f9;
+            border: 1px solid #e2e8f0;
+            color: #0f172a;
+            margin-right: 0.4rem;
+            margin-top: 0.25rem;
+        }
+        .muted{
+            color:#64748b;
+            font-size: 0.92rem;
+        }
+        .small{
+            font-size: 0.85rem;
+            color: #94a3b8;
+        }
+
+        @media (max-width: 980px) {
+            .audit-wrap{ grid-template-columns: 1fr; }
+            .audit-side{ position: static; }
+            .q{ grid-template-columns: 1fr; }
+        }
+
+
+        /* Multi-page nav dropdown */
+        .nav-links .dropdown { position: relative; }
+        .nav-links .dropdown-menu{
+            display:none;
+            position:absolute;
+            top: 100%;
+            left: 0;
+            background: rgba(15, 23, 42, 0.98);
+            border: 1px solid rgba(56,189,248,0.25);
+            border-radius: 12px;
+            padding: 0.6rem;
+            min-width: 220px;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+            z-index: 999;
+        }
+        .nav-links .dropdown-menu li{ margin: 0; }
+        .nav-links .dropdown-menu a{
+            display:block;
+            padding: 0.55rem 0.75rem;
+            border-radius: 10px;
+            color: #e2e8f0;
+            text-decoration: none;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+        .nav-links .dropdown-menu a:hover{
+            background: rgba(56,189,248,0.14);
+            color: #ffffff;
+        }
+        .nav-links .dropdown:hover .dropdown-menu{ display:block; }
+
+        /* Allow button style on <a> */
+        a.btn-primary, a.btn-secondary{
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+        }
+
+</style>
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+
+
+    <!-- Cloudflare Web Analytics -->
+    <script defer src="https://static.cloudflareinsights.com/beacon.min.js"
+        data-cf-beacon='{"token":"69012921eb0d444dba63e1991c236ef8"}'></script>
+
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="../automation/index.html" class="logo"><img src="../svprof_logo.png" alt="SVPROF" style="height: 75px; object-fit: contain; display: block;"></a>
+        <ul class="nav-links">
+            <li class="dropdown">
+                <a href="../automation/index.html">Автоматизация ▾</a>
+                <ul class="dropdown-menu">
+                    <li><a href="../automation/problems.html">Проблемы</a></li>
+                    <li><a href="../automation/processes.html">Процессы</a></li>
+                    <li><a href="../automation/solutions.html">Решения</a></li>
+                    <li><a href="../automation/results.html">Результаты</a></li>
+                    <li><a href="../automation/audit.html">Аудит</a></li>
+                </ul>
+            </li>
+            <li><a href="../contacts.html">Контакты</a></li>
+            <li><a class="btn-primary" href="../contacts.html">Запрос демо</a></li>
+        </ul>
+    </nav>
+
+
+    <section class="hero">
+        <h1>Решения на базе n8n</h1>
+        <p>Интеграции, боты, документооборот, алерты, BI и AI‑ассистенты — под ваши цели.</p>
+        <div class="hero-buttons">
+            <a class="btn-primary" href="audit.html">Пройти экспресс‑аудит</a>
+            <a class="btn-secondary" href="../contacts.html">Связаться</a>
+        </div>
+        <div class="hero-flow">
+            <div class="flow-steps">
+                <div class="flow-step">📧 Каналы</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">🔄 n8n</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">⚙️ Системы</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">📊 BI</div>
+            </div>
+        </div>
+    </section>
+
+<section class="benefits" id="benefits">
+        <h2 class="section-title">Цели внедрения <span class="accent-green">платформы</span></h2>
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <div class="icon">⚡</div>
+                <h3>Убрать ручную рутину</h3>
+                <p>Автоматизировать 70% рутинных операций, освободить сотрудников для стратегии</p>
+            </div>
+            <div class="benefit-card">
+                <div class="icon">🎯</div>
+                <h3>Контроль SLA</h3>
+                <p>Автоматические эскалации, 100% прозрачность, ни один заказ не потеряется</p>
+            </div>
+            <div class="benefit-card">
+                <div class="icon">🚀</div>
+                <h3>Скорость реакции</h3>
+                <p>От часов к минутам в критичных процессах — быстро реагируем на изменения</p>
+            </div>
+            <div class="benefit-card">
+                <div class="icon">📐</div>
+                <h3>Единая архитектура</h3>
+                <p>Централизованные данные, полный аудит, видимость всего происходящего</p>
+            </div>
+            <div class="benefit-card">
+                <div class="icon">🤖</div>
+                <h3>Основа для AI</h3>
+                <p>Подготовка к машинному обучению, прогнозированию, предиктивному анализу</p>
+            </div>
+            <div class="benefit-card">
+                <div class="icon">💰</div>
+                <h3>Снижение затрат</h3>
+                <p>Сокращение ручного труда, оптимизация запасов, снижение потерь на 30-40%</p>
+            </div>
+        </div>
+    </section>
+<footer>
+        <h3>Готовы трансформировать вашу компанию?</h3>
+        <p>Запросите демонстрацию платформы прямо сейчас</p>
+        <button class="btn-primary" style="margin: 2rem 0;" data-scroll="#contacts">Запрос демо</button>
+        <div class="footer-links">
+            <a href="#">О нас</a>
+            <a href="#">Возможности</a>
+            <a href="#">Документация</a>
+            <a href="#contacts">Контакты</a>
+        </div>
+        <p>&copy; 2026 n8n Automation Platform. Все права защищены.</p>
+    </footer>
+<script>
+(function(){
+  const form = document.getElementById('auditForm');
+  if(!form) return;
+
+  const selects = Array.from(form.querySelectorAll('select'));
+  const scoreValue = document.getElementById('scoreValue');
+  const scoreLevel = document.getElementById('scoreLevel');
+  const scoreNeed = document.getElementById('scoreNeed');
+  const completionBadge = document.getElementById('completionBadge');
+  const progressBar = document.getElementById('progressBar');
+  const recommendCard = document.getElementById('recommendCard');
+  const recommendText = document.getElementById('recommendText');
+
+  const totalQuestions = selects.length;
+  const maxPerQ = 3;
+  const maxTotal = totalQuestions * maxPerQ;
+
+  function clamp(n, a, b){ return Math.min(Math.max(n,a),b); }
+
+  function getMaturity(){
+    let answered = 0;
+    let sum = 0;
+    const blockSum = {A:0,B:0,C:0,D:0};
+    const blockCnt = {A:0,B:0,C:0,D:0};
+
+    selects.forEach(sel => {
+      const v = sel.value;
+      const q = sel.closest('.q');
+      const block = (q && q.dataset && q.dataset.block) ? q.dataset.block : 'A';
+      blockCnt[block] += 1;
+
+      if(v !== ''){
+        answered += 1;
+        const num = parseInt(v,10);
+        if(!isNaN(num)) { sum += num; blockSum[block] += num; }
+      }
+    });
+
+    const maturity = answered ? Math.round((sum / maxTotal) * 100) : null;
+    const completion = Math.round((answered / totalQuestions) * 100);
+
+    const blockAvg = {};
+    Object.keys(blockSum).forEach(k => {
+      blockAvg[k] = blockCnt[k] ? (blockSum[k] / (blockCnt[k]*maxPerQ)) : 0; // 0..1
+    });
+
+    return { maturity, answered, completion, blockAvg };
+  }
+
+  function levelFromScore(score){
+    if(score === null) return {label: "Заполните ответы, чтобы увидеть результат", emoji:"📝"};
+    if(score <= 25) return {label:"Ручное управление. Высокий потенциал эффекта от автоматизации.", emoji:"🔥"};
+    if(score <= 50) return {label:"Частичная управляемость. Есть быстрые точки автоматизации (2–4 недели).", emoji:"⚡"};
+    if(score <= 75) return {label:"Хорошая база. Нужны интеграции, регламенты и BI‑контур.", emoji:"✅"};
+    return {label:"Высокая зрелость. Можно внедрять AI‑агентов и предиктивную аналитику.", emoji:"🤖"};
+  }
+
+  function recommendations(blockAvg){
+    // lower avg => more pain
+    const entries = Object.entries(blockAvg).sort((a,b)=>a[1]-b[1]);
+    const top = entries.slice(0,2).map(x=>x[0]);
+
+    const map = {
+      A: {
+        title:"Поток операций и ручная рутина",
+        quick:["Интеграции между системами (убрать копипаст)", "Автоматизация отчетов и выгрузок", "Единый реестр заявок/операций + уведомления"]
+      },
+      B: {
+        title:"Продажи и сервис",
+        quick:["Единый вход заявок из всех каналов", "SLA‑контроль: напоминания/эскалации", "Автогенерация КП/счетов/договоров"]
+      },
+      C: {
+        title:"Деньги и документооборот",
+        quick:["Маршруты согласований оплат/счетов/договоров", "Платежный календарь + прогноз ДДС", "Автоконтроль дебиторки и просрочек"]
+      },
+      D: {
+        title:"Данные и аналитика",
+        quick:["Очистка НСИ/справочников (дубли, ошибки)", "Витрина данных + BI‑дашборды", "Подготовка базы для AI (FAQ, классификация, поиск)"]
+      }
+    };
+
+    const blocks = top.map(k => map[k]);
+    const text = `
+      <p><strong>ТОП‑зоны потерь:</strong> ${blocks.map(b=>b.title).join(", ")}.</p>
+      <p><strong>Quick wins (что можно сделать в первую очередь):</strong></p>
+      <ol style="margin:0.5rem 0 0 1.2rem;">
+        ${blocks.flatMap(b=>b.quick.slice(0,2)).slice(0,3).map(x=>`<li>${x}</li>`).join("")}
+      </ol>
+    `;
+    return text;
+  }
+
+  function updateUI(){
+    const {maturity, answered, completion, blockAvg} = getMaturity();
+
+    completionBadge.textContent = `${answered}/${totalQuestions}`;
+    progressBar.style.width = `${clamp(completion,0,100)}%`;
+
+    if(maturity === null){
+      scoreValue.textContent = "—";
+      scoreLevel.textContent = "Заполните ответы, чтобы увидеть результат";
+      scoreNeed.textContent = "";
+      recommendCard.style.display = "none";
+      return;
+    }
+
+    scoreValue.textContent = `${maturity}/100`;
+    const lvl = levelFromScore(maturity);
+    scoreLevel.textContent = `${lvl.emoji} ${lvl.label}`;
+
+    const need = 100 - maturity;
+    scoreNeed.textContent = `Потенциал эффекта: примерно ${need}/100 (чем выше — тем больше “запас” улучшений).`;
+
+    // show recommendations once > 50% answered
+    if(answered >= Math.ceil(totalQuestions*0.5)){
+      recommendText.innerHTML = recommendations(blockAvg);
+      recommendCard.style.display = "block";
+    } else {
+      recommendCard.style.display = "none";
+    }
+  }
+
+  // init
+  selects.forEach(sel => sel.addEventListener('change', updateUI));
+  updateUI();
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    updateUI();
+    // мягко прокручиваем к карточке результата
+    document.getElementById('scoreCard')?.scrollIntoView({behavior:'smooth', block:'start'});
+  });
+
+  document.getElementById('resetAudit')?.addEventListener('click', function(){
+    selects.forEach(s => s.value = "");
+    updateUI();
+  });
+
+  document.getElementById('copyAudit')?.addEventListener('click', async function(){
+    const {maturity, answered} = getMaturity();
+    const text = maturity === null
+      ? "Экспресс-аудит SVProf: результат пока не рассчитан — заполните вопросы."
+      : `Экспресс-аудит SVProf: индекс зрелости ${maturity}/100. Заполнено ${answered}/${totalQuestions}.`;
+    try{
+      await navigator.clipboard.writeText(text);
+      this.textContent = "Скопировано ✓";
+      setTimeout(()=>this.textContent="Скопировать результат", 1500);
+    } catch(err){
+      alert("Не удалось скопировать. Вы можете выделить и скопировать текст вручную: " + text);
+    }
+  });
+
+  // Smooth scroll for buttons/links with data-scroll
+  document.querySelectorAll('[data-scroll]').forEach(el=>{
+    el.addEventListener('click', function(){
+      const target = this.getAttribute('data-scroll');
+      if(!target) return;
+      const node = document.querySelector(target);
+      if(node) node.scrollIntoView({behavior:'smooth', block:'start'});
+    });
+  });
+})();
+</script>
+</body>
+</html>
