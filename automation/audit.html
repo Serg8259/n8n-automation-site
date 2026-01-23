@@ -746,6 +746,23 @@ section[id] { scroll-margin-top: var(--header-offset); }
             text-decoration: none;
         }
 
+
+        /* Active nav item */
+        .nav-links a.active{
+            color: #38bdf8 !important;
+        }
+        .nav-links a.active::after{
+            content: "";
+            display: block;
+            height: 2px;
+            background: #38bdf8;
+            margin-top: 6px;
+            border-radius: 999px;
+        }
+        .nav-links .dropdown > a.active{
+            color: #38bdf8 !important;
+        }
+
 </style>
     <!-- Favicon -->
     <link rel="icon" href="favicon.ico" sizes="any">
@@ -764,7 +781,10 @@ section[id] { scroll-margin-top: var(--header-offset); }
     <!-- Navigation -->
     <nav>
         <a href="../automation/index.html" class="logo"><img src="../svprof_logo.png" alt="SVPROF" style="height: 75px; object-fit: contain; display: block;"></a>
+        
         <ul class="nav-links">
+            <li><a href="../automation/audit.html" class="active">Аудит</a></li>
+
             <li class="dropdown">
                 <a href="../automation/index.html">Автоматизация ▾</a>
                 <ul class="dropdown-menu">
@@ -772,8 +792,13 @@ section[id] { scroll-margin-top: var(--header-offset); }
                     <li><a href="../automation/processes.html">Процессы</a></li>
                     <li><a href="../automation/solutions.html">Решения</a></li>
                     <li><a href="../automation/results.html">Результаты</a></li>
-                    <li><a href="../automation/audit.html">Аудит</a></li>
                 </ul>
+            </li>
+
+            <li><a href="../contacts.html">Контакты</a></li>
+            <li><a class="btn-primary" href="../contacts.html">Запрос демо</a></li>
+        </ul>
+
             </li>
             <li><a href="../contacts.html">Контакты</a></li>
             <li><a class="btn-primary" href="../contacts.html">Запрос демо</a></li>
