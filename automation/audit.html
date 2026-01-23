@@ -705,49 +705,7 @@ section[id] { scroll-margin-top: var(--header-offset); }
             .audit-side{ position: static; }
             .q{ grid-template-columns: 1fr; }
         }
-
-
-        /* Multi-page nav dropdown */
-        .nav-links .dropdown { position: relative; }
-        .nav-links .dropdown-menu{
-            display:none;
-            position:absolute;
-            top: 100%;
-            left: 0;
-            background: rgba(15, 23, 42, 0.98);
-            border: 1px solid rgba(56,189,248,0.25);
-            border-radius: 12px;
-            padding: 0.6rem;
-            min-width: 220px;
-            box-shadow: 0 12px 30px rgba(0,0,0,0.25);
-            z-index: 999;
-        }
-        .nav-links .dropdown-menu li{ margin: 0; }
-        .nav-links .dropdown-menu a{
-            display:block;
-            padding: 0.55rem 0.75rem;
-            border-radius: 10px;
-            color: #e2e8f0;
-            text-decoration: none;
-            font-weight: 700;
-            white-space: nowrap;
-        }
-        .nav-links .dropdown-menu a:hover{
-            background: rgba(56,189,248,0.14);
-            color: #ffffff;
-        }
-        .nav-links .dropdown:hover .dropdown-menu{ display:block; }
-
-        /* Allow button style on <a> */
-        a.btn-primary, a.btn-secondary{
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-        }
-
-
-        /* Active nav item */
+/* Active nav item */
         .nav-links a.active{
             color: #38bdf8 !important;
         }
@@ -779,31 +737,17 @@ section[id] { scroll-margin-top: var(--header-offset); }
 <body>
 
     <!-- Navigation -->
+    
     <nav>
         <a href="../automation/index.html" class="logo"><img src="../svprof_logo.png" alt="SVPROF" style="height: 75px; object-fit: contain; display: block;"></a>
-        
         <ul class="nav-links">
             <li><a href="../automation/audit.html" class="active">Аудит</a></li>
-
-            <li class="dropdown">
-                <a href="../automation/index.html">Автоматизация ▾</a>
-                <ul class="dropdown-menu">
-                    <li><a href="../automation/problems.html">Проблемы</a></li>
-                    <li><a href="../automation/processes.html">Процессы</a></li>
-                    <li><a href="../automation/solutions.html">Решения</a></li>
-                    <li><a href="../automation/results.html">Результаты</a></li>
-                </ul>
-            </li>
-
+            <li><a href="../automation/index.html">Автоматизация</a></li>
             <li><a href="../contacts.html">Контакты</a></li>
-            <li><a class="btn-primary" href="../contacts.html">Запрос демо</a></li>
         </ul>
-
-            </li>
-            <li><a href="../contacts.html">Контакты</a></li>
-            <li><a class="btn-primary" href="../contacts.html">Запрос демо</a></li>
-        </ul>
+        <a class="btn-primary" href="../contacts.html">Запрос демо</a>
     </nav>
+
 
 
     <section class="hero">

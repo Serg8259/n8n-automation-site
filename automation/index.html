@@ -705,49 +705,7 @@ section[id] { scroll-margin-top: var(--header-offset); }
             .audit-side{ position: static; }
             .q{ grid-template-columns: 1fr; }
         }
-
-
-        /* Multi-page nav dropdown */
-        .nav-links .dropdown { position: relative; }
-        .nav-links .dropdown-menu{
-            display:none;
-            position:absolute;
-            top: 100%;
-            left: 0;
-            background: rgba(15, 23, 42, 0.98);
-            border: 1px solid rgba(56,189,248,0.25);
-            border-radius: 12px;
-            padding: 0.6rem;
-            min-width: 220px;
-            box-shadow: 0 12px 30px rgba(0,0,0,0.25);
-            z-index: 999;
-        }
-        .nav-links .dropdown-menu li{ margin: 0; }
-        .nav-links .dropdown-menu a{
-            display:block;
-            padding: 0.55rem 0.75rem;
-            border-radius: 10px;
-            color: #e2e8f0;
-            text-decoration: none;
-            font-weight: 700;
-            white-space: nowrap;
-        }
-        .nav-links .dropdown-menu a:hover{
-            background: rgba(56,189,248,0.14);
-            color: #ffffff;
-        }
-        .nav-links .dropdown:hover .dropdown-menu{ display:block; }
-
-        /* Allow button style on <a> */
-        a.btn-primary, a.btn-secondary{
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-        }
-
-
-        /* Active nav item */
+/* Active nav item */
         .nav-links a.active{
             color: #38bdf8 !important;
         }
@@ -779,31 +737,17 @@ section[id] { scroll-margin-top: var(--header-offset); }
 <body>
 
     <!-- Navigation -->
+    
     <nav>
         <a href="../automation/index.html" class="logo"><img src="../svprof_logo.png" alt="SVPROF" style="height: 75px; object-fit: contain; display: block;"></a>
-        
         <ul class="nav-links">
             <li><a href="../automation/audit.html">Аудит</a></li>
-
-            <li class="dropdown">
-                <a href="../automation/index.html" class="active">Автоматизация ▾</a>
-                <ul class="dropdown-menu">
-                    <li><a href="../automation/problems.html">Проблемы</a></li>
-                    <li><a href="../automation/processes.html">Процессы</a></li>
-                    <li><a href="../automation/solutions.html">Решения</a></li>
-                    <li><a href="../automation/results.html">Результаты</a></li>
-                </ul>
-            </li>
-
+            <li><a href="../automation/index.html" class="active">Автоматизация</a></li>
             <li><a href="../contacts.html">Контакты</a></li>
-            <li><a class="btn-primary" href="../contacts.html">Запрос демо</a></li>
         </ul>
-
-            </li>
-            <li><a href="../contacts.html">Контакты</a></li>
-            <li><a class="btn-primary" href="../contacts.html">Запрос демо</a></li>
-        </ul>
+        <a class="btn-primary" href="../contacts.html">Запрос демо</a>
     </nav>
+
 
 <section class="hero">
         <h1>Автоматизация Ваших процессов<br>на базе платформы <span class="highlight">n8n</span></h1>
@@ -825,36 +769,228 @@ section[id] { scroll-margin-top: var(--header-offset); }
         </div>
     </section>
 
-    <section class="benefits" id="automation-overview">
-        <h2 class="section-title">Раздел <span class="accent">«Автоматизация»</span></h2>
-        <div class="benefits-container">
-            <div class="benefit-card">
-                <h3>Проблемы</h3>
-                <p>Боли, потери и «узкие места», которые съедают время, деньги и качество.</p>
-                <a class="btn-secondary" href="problems.html" style="margin-top: 0.75rem; display:inline-flex;">Открыть</a>
+    <section class="problems" id="problems">
+        <h2 class="section-title">Текущие <span class="accent">боли</span> компании</h2>
+        <div class="problems-grid">
+            <div class="problem-card">
+                <div class="icon">📧</div>
+                <h3>Каналы разрозненны</h3>
+                <p>Email, WhatsApp, Telegram, звонки — всё врозь, информация теряется</p>
             </div>
-            <div class="benefit-card">
-                <h3>Процессы</h3>
-                <p>Какие процессы мы автоматизируем в производственной компании: от заявок до финансов.</p>
-                <a class="btn-secondary" href="processes.html" style="margin-top: 0.75rem; display:inline-flex;">Открыть</a>
+            <div class="problem-card">
+                <div class="icon">❌</div>
+                <h3>Заявки теряются</h3>
+                <p>Нет единого входа, потери в процессе, невозможно отследить</p>
             </div>
-            <div class="benefit-card">
-                <h3>Решения</h3>
-                <p>Типовые решения на базе n8n: интеграции, боты, документооборот, BI и AI‑ассистенты.</p>
-                <a class="btn-secondary" href="solutions.html" style="margin-top: 0.75rem; display:inline-flex;">Открыть</a>
+            <div class="problem-card">
+                <div class="icon">⏱️</div>
+                <h3>Ручной контроль</h3>
+                <p>Ручная проверка сроков, согласований, эскалаций — времязатратно</p>
             </div>
-            <div class="benefit-card">
-                <h3>Результаты</h3>
-                <p>Какие метрики улучшаем и как выглядит эффект от внедрения.</p>
-                <a class="btn-secondary" href="results.html" style="margin-top: 0.75rem; display:inline-flex;">Открыть</a>
+            <div class="problem-card">
+                <div class="icon">📊</div>
+                <h3>Нет метрик</h3>
+                <p>SLA размыты, невозможно отследить проблемы и причины</p>
             </div>
-            <div class="benefit-card">
-                <h3>Экспресс‑аудит</h3>
-                <p>24 вопроса → индекс зрелости 0–100 и рекомендации по быстрым улучшениям.</p>
-                <a class="btn-primary" href="audit.html" style="margin-top: 0.75rem; display:inline-flex;">Пройти аудит</a>
+            <div class="problem-card">
+                <div class="icon">🔍</div>
+                <h3>Слабая трассируемость</h3>
+                <p>Почему сорвали сроки? Где ошибка? Ответа нет</p>
+            </div>
+            <div class="problem-card">
+                <div class="icon">💸</div>
+                <h3>Потери эффективности</h3>
+                <p>Простои, задержки, избыточные запасы, лишние расходы</p>
             </div>
         </div>
     </section>
+<section class="processes" id="processes">
+        <h2 class="section-title">Сквозные процессы автоматизации</h2>
+        <div class="processes-grid">
+            <div class="process-card">
+                <div class="process-icon">👥</div>
+                <h3>HR: найм и онбординг</h3>
+                <ul class="process-list">
+                    <li>Автоответы + скоринг CV</li>
+                    <li>Воронка найма в одной системе</li>
+                    <li>Автоонбординг (доступы, пропуск)</li>
+                    <li>Обучение с отслеживанием</li>
+                </ul>
+                <div class="process-kpi">📈 Time-to-Hire: 30→10 дней</div>
+            </div>
+
+            <div class="process-card">
+                <div class="process-icon">💰</div>
+                <h3>Продажи: лиды не теряются</h3>
+                <ul class="process-list">
+                    <li>Единый вход всех лидов</li>
+                    <li>Справедливое распределение</li>
+                    <li>SLA контроль с эскалациями</li>
+                    <li>Автодокументы (КП, счёт)</li>
+                </ul>
+                <div class="process-kpi">⏰ Ответ на лид: 2ч → 15 мин</div>
+            </div>
+
+            <div class="process-card">
+                <div class="process-icon">📣</div>
+                <h3>Маркетинг: аналитика рынка</h3>
+                <ul class="process-list">
+                    <li>Мониторинг конкурентов</li>
+                    <li>Отслеживание упоминаний</li>
+                    <li>ROMI по каналам</li>
+                    <li>Оптимизация бюджета</li>
+                </ul>
+                <div class="process-kpi">🎯 ROI на основе данных</div>
+            </div>
+
+            <div class="process-card">
+                <div class="process-icon">🛒</div>
+                <h3>Закупки: от заявки к поставке</h3>
+                <ul class="process-list">
+                    <li>Автозаявки по уровню</li>
+                    <li>Сбор и сравнение КП</li>
+                    <li>Контроль сроков поставок</li>
+                    <li>Сверка документов</li>
+                </ul>
+                <div class="process-kpi">✓ OTD поставщиков ↑ 20-30%</div>
+            </div>
+
+            <div class="process-card">
+                <div class="process-icon">🏭</div>
+                <h3>Производство: план-факт</h3>
+                <ul class="process-list">
+                    <li>План из заказов автоматом</li>
+                    <li>Сменные задания рабочим</li>
+                    <li>Учёт выпуска в реал-тайме</li>
+                    <li>Контроль простоев</li>
+                </ul>
+                <div class="process-kpi">⚡ OEE ↑ 15-20%, видимость 24/7</div>
+            </div>
+
+            <div class="process-card">
+                <div class="process-icon">🔍</div>
+                <h3>Качество: CAPA и рекламации</h3>
+                <ul class="process-list">
+                    <li>Регистрация брака</li>
+                    <li>CAPA процесс с контролем</li>
+                    <li>Рекламации поставщикам</li>
+                    <li>Анализ Pareto причин</li>
+                </ul>
+                <div class="process-kpi">🎯 Брак ↓ 25-40%</div>
+            </div>
+
+            <div class="process-card">
+                <div class="process-icon">📦</div>
+                <h3>Склад: запасы под контролем</h3>
+                <ul class="process-list">
+                    <li>Min/max контроль уровней</li>
+                    <li>Автозаявки на закупку</li>
+                    <li>Трекинг отгрузок GPS</li>
+                    <li>Инвентаризация</li>
+                </ul>
+                <div class="process-kpi">📈 Оборачиваемость ↑ на 30%</div>
+            </div>
+
+            <div class="process-card">
+                <div class="process-icon">💳</div>
+                <h3>Финансы: деньги под контролем</h3>
+                <ul class="process-list">
+                    <li>Маршруты одобрений платежей</li>
+                    <li>ДДС: план vs факт</li>
+                    <li>Управление дебиторкой</li>
+                    <li>Договоры по шаблону</li>
+                </ul>
+                <div class="process-kpi">💵 DSO ↓ на 10-15 дней</div>
+            </div>
+        </div>
+    </section>
+<section class="benefits" id="benefits">
+        <h2 class="section-title">Цели внедрения <span class="accent-green">платформы</span></h2>
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <div class="icon">⚡</div>
+                <h3>Убрать ручную рутину</h3>
+                <p>Автоматизировать 70% рутинных операций, освободить сотрудников для стратегии</p>
+            </div>
+            <div class="benefit-card">
+                <div class="icon">🎯</div>
+                <h3>Контроль SLA</h3>
+                <p>Автоматические эскалации, 100% прозрачность, ни один заказ не потеряется</p>
+            </div>
+            <div class="benefit-card">
+                <div class="icon">🚀</div>
+                <h3>Скорость реакции</h3>
+                <p>От часов к минутам в критичных процессах — быстро реагируем на изменения</p>
+            </div>
+            <div class="benefit-card">
+                <div class="icon">📐</div>
+                <h3>Единая архитектура</h3>
+                <p>Централизованные данные, полный аудит, видимость всего происходящего</p>
+            </div>
+            <div class="benefit-card">
+                <div class="icon">🤖</div>
+                <h3>Основа для AI</h3>
+                <p>Подготовка к машинному обучению, прогнозированию, предиктивному анализу</p>
+            </div>
+            <div class="benefit-card">
+                <div class="icon">💰</div>
+                <h3>Снижение затрат</h3>
+                <p>Сокращение ручного труда, оптимизация запасов, снижение потерь на 30-40%</p>
+            </div>
+        </div>
+    </section>
+<section class="kpi-section" id="kpi">
+        <h2 class="section-title">Ключевые метрики <span class="accent-green">успеха</span></h2>
+        <div class="kpi-grid">
+            <div class="kpi-card">
+                <div class="kpi-value">95%+</div>
+                <div class="kpi-label">SLA Выполнение</div>
+                <div class="kpi-desc">Согласования и сделки в срок</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-value">+15-20%</div>
+                <div class="kpi-label">OEE Производства</div>
+                <div class="kpi-desc">Общая эффективность оборудования</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-value">-25-40%</div>
+                <div class="kpi-label">Снижение брака</div>
+                <div class="kpi-desc">Контроль качества процессов</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-value">-10-15 дн</div>
+                <div class="kpi-label">DSO Дебиторки</div>
+                <div class="kpi-desc">Ускорение оборачиваемости</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-value">+20-30%</div>
+                <div class="kpi-label">OTD Поставщиков</div>
+                <div class="kpi-desc">Поставки точно в срок</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-value">30→10 дн</div>
+                <div class="kpi-label">Time-to-Hire</div>
+                <div class="kpi-desc">Ускорение подбора кадров</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="benefits" id="audit-cta">
+        <h2 class="section-title">Хотите понять, где <span class="accent">теряются деньги</span> и время?</h2>
+        <div class="benefits-container">
+            <div class="benefit-card">
+                <h3>Экспресс‑аудит автоматизации</h3>
+                <p>24 вопроса → индекс зрелости 0–100 и рекомендации по первым шагам.</p>
+                <a class="btn-primary" href="audit.html" style="margin-top: 0.75rem; display:inline-flex;">Пройти аудит</a>
+            </div>
+            <div class="benefit-card">
+                <h3>План внедрения</h3>
+                <p>После аудита — короткий созвон 15–20 минут и план работ по приоритетам.</p>
+                <a class="btn-secondary" href="../contacts.html" style="margin-top: 0.75rem; display:inline-flex;">Связаться</a>
+            </div>
+        </div>
+    </section>
+
 
 <footer>
         <h3>Готовы трансформировать вашу компанию?</h3>
