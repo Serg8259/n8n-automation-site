@@ -835,6 +835,71 @@ section[id] { scroll-margin-top: var(--header-offset); }
         </div>
     </section>
 
+
+    <!-- ===== Финансовый эффект (общая оценка) ===== -->
+    <section class="sv-finance">
+        <div class="svf-wrap">
+            <h2 class="section-title">Какой финансовый эффект обычно даёт автоматизация</h2>
+            <p class="svf-sub">Оценка по размеру компании. Точный расчёт вы получите после прохождения экспресс‑аудита.</p>
+
+            <div class="svf-grid">
+                <div class="svf-card">
+                    <div class="svf-badge">10–50 сотрудников</div>
+                    <div class="svf-value">+360 000 – 3 600 000 ₽ / год</div>
+                    <ul>
+                        <li>Появляются метрики для быстрых управленческих решений</li>
+                        <li>Снижаются потери заказов и ошибки данных</li>
+                        <li>Уходит хаос в коммуникациях</li>
+                    </ul>
+                </div>
+
+                <div class="svf-card highlight">
+                    <div class="svf-badge">50–200 сотрудников</div>
+                    <div class="svf-value">+1 200 000 – 12 000 000 ₽ / год</div>
+                    <ul>
+                        <li>Устраняются “узкие места” в процессах</li>
+                        <li>Меньше потерь заказов на стыках отделов</li>
+                        <li>Повышается управляемость компании</li>
+                    </ul>
+                </div>
+
+                <div class="svf-card">
+                    <div class="svf-badge">200+ сотрудников</div>
+                    <div class="svf-value">+3 600 000 – 9 600 000 ₽ / год*</div>
+                    <div class="svf-note">*Оценка на каждые 200 сотрудников</div>
+                    <ul>
+                        <li>Прозрачность процессов и показателей</li>
+                        <li>Снижение ошибок и переделок</li>
+                        <li>Контроль на уровне руководства</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="svf-bottom">
+                Первый этап: ~600 000 ₽ · Срок: ~2 месяца · Окупаемость: до 6 месяцев
+                <div class="svf-actions">
+                    <a href="#audit" class="btn-primary">Пройти экспресс‑аудит</a>
+                    <a href="../contacts.html" class="btn-secondary">Обсудить внедрение</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <style>
+        .sv-finance{padding:4rem 5%;background:#0f172a;color:#f1f5f9}
+        .svf-wrap{max-width:1100px;margin:auto}
+        .svf-sub{opacity:.85;margin-bottom:2rem}
+        .svf-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem}
+        .svf-card{background:#1e293b;padding:1.5rem;border-radius:12px;border:1px solid #38bdf8}
+        .svf-card.highlight{transform:scale(1.05);border-color:#10b981}
+        .svf-badge{font-weight:700;margin-bottom:.5rem;color:#38bdf8}
+        .svf-value{font-size:1.3rem;font-weight:700;margin-bottom:.7rem}
+        .svf-note{font-size:.8rem;color:#94a3b8;margin-bottom:.5rem}
+        .svf-card ul{margin-left:1.2rem;color:#cbd5e1}
+        .svf-bottom{margin-top:2rem;padding-top:1rem;border-top:1px solid #334155}
+        .svf-actions{margin-top:1rem;display:flex;gap:1rem;flex-wrap:wrap}
+    </style>
+
 <section class="audit" id="audit">
         <h2 class="section-title">Экспресс‑аудит: нужна ли вам <span class="accent">автоматизация</span>?</h2>
 
@@ -1227,7 +1292,13 @@ section[id] { scroll-margin-top: var(--header-offset); }
                     </p>
                 </div>
 
-                <div class="result-card" id="recommendCard" style="display:none;">
+                
+<div class="result-card" id="financeResult" style="display:none;">
+    <h4>Финансовый потенциал по вашим ответам</h4>
+    <div id="financeText" class="muted"></div>
+</div>
+
+<div class="result-card" id="recommendCard" style="display:none;">
                     <h4>Ваши рекомендации</h4>
                     <div id="recommendText" class="muted"></div>
                 </div>
@@ -1339,7 +1410,17 @@ section[id] { scroll-margin-top: var(--header-offset); }
     return text;
   }
 
-  function updateUI(){
+  
+    const financeResult = document.getElementById('financeResult');
+    const financeText = document.getElementById('financeText');
+
+    function financeEstimate(score){
+        if(score < 30) return "У вас высокий потенциал улучшений. В компаниях вашего профиля эффект может составлять 3–8 млн ₽ в год.";
+        if(score < 60) return "Средний потенциал улучшений. Типичный эффект автоматизации 1–5 млн ₽ в год.";
+        return "Вы уже на хорошем уровне, но точечные улучшения могут дать 0.5–2 млн ₽ в год.";
+    }
+
+function updateUI(){
     const {maturity, answered, completion, blockAvg} = getMaturity();
 
     completionBadge.textContent = `${answered}/${totalQuestions}`;
@@ -1363,7 +1444,7 @@ section[id] { scroll-margin-top: var(--header-offset); }
     // show recommendations once > 50% answered
     if(answered >= Math.ceil(totalQuestions*0.5)){
       recommendText.innerHTML = recommendations(blockAvg);
-      recommendCard.style.display = "block";
+      recommendCard.style.display = "block"; financeResult.style.display="block"; financeText.textContent = financeEstimate(maturity);
     } else {
       recommendCard.style.display = "none";
     }
