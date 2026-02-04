@@ -774,38 +774,28 @@ section[id] { scroll-margin-top: var(--header-offset); }
         .nav-links { margin-left:auto !important; display:flex; align-items:center; gap: 2rem; }
 
 
-        /* Workflow image block */
-        .workflow-figure{
+        /* ===== WORKFLOW IMAGE BLOCK ===== */
+        .workflow-figure {
+            margin: 60px auto;
+            text-align: center;
             max-width: 1100px;
-            margin: 0 auto 2.25rem auto;
-            padding: 1.25rem;
-            background: #ffffff;
-            border-radius: 12px;
-            border: 1px solid #e2e8f0;
-            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.08);
         }
-        .workflow-figure img{
+        .workflow-figure img {
             width: 100%;
             height: auto;
-            display: block;
-            border-radius: 10px;
-            border: 1px solid #e2e8f0;
+            border-radius: 14px;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.12);
         }
-        .workflow-figure figcaption{
-            margin-top: 0.9rem;
-            font-weight: 800;
+        .workflow-figure figcaption {
+            font-size: 20px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 18px;
             color: #0f172a;
-            text-align: center;
         }
-        .workflow-figure .workflow-sub{
-            margin-top: 0.25rem;
-            text-align: center;
-            color: #64748b;
-            font-size: 0.92rem;
-            font-weight: 600;
-        }
+        /* ================================= */
 
-</style>
+    </style>
     <!-- Favicon -->
     <link rel="icon" href="favicon.ico" sizes="any">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
@@ -1069,16 +1059,14 @@ section[id] { scroll-margin-top: var(--header-offset); }
         </div>
     </section>
 
-    
-   <figure class="workflow-figure">
-  <figcaption>
-    Рабочий workflow автоматизированного Telegram-бота этого сайта
-  </figcaption>
-  <img src="Workflow_Bot_1.png" alt="Рабочий workflow Telegram-бота">
-</figure>
 
+    <!-- WORKFLOW BLOCK -->
+    <figure class="workflow-figure">
+        <figcaption>Рабочий workflow автоматизированного Telegram-бота этого сайта</figcaption>
+        <img src="Workflow_Bot_1.png" alt="Рабочий workflow автоматизированного Telegram-бота этого сайта">
+    </figure>
 
-<section class="cta" id="cta">
+    <section class="cta" id="cta">
         <h2 class="section-title">Начните с <span class="accent">экспресс‑аудита</span></h2>
         <p style="max-width: 900px; margin: 0 auto; text-align:center; color:#94a3b8;">
             24 вопроса → индекс зрелости 0–100 и рекомендации по первым шагам автоматизации.
