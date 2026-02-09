@@ -1,0 +1,1511 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SVProf — Аудит</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #0f172a;
+            background-color: #ffffff;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5%;
+            background-color: #020617;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #38bdf8;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #f1f5f9;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #38bdf8;
+        }
+
+        .btn-primary {
+            background-color: #38bdf8;
+            color: #0f172a;
+            padding: 0.7rem 1.5rem;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn-primary:hover {
+            background-color: #0284c7;
+        }
+
+        /* Hero Section */
+        .hero{background: linear-gradient(135deg, #020617 0%, #0f172a 100%);
+            color: #f1f5f9;
+            padding:3.6rem 5%;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero .highlight {
+            color: #38bdf8;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: #cbd5e1;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-buttons{display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom:1.6rem;
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: #f1f5f9;
+            padding: 0.8rem 2rem;
+            border: 2px solid #38bdf8;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-secondary:hover {
+            background-color: #38bdf8;
+            color: #0f172a;
+        }
+
+        .hero-flow{max-width: 1000px;
+            margin: 0 auto;
+            padding:1.2rem;
+            background-color: rgba(56, 189, 248, 0.1);
+            border-radius: 12px;
+            border: 1px solid #38bdf8;
+        }
+
+        .flow-steps {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .flow-step {
+            background-color: #1e293b;
+            padding: 0.8rem 1.2rem;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            color: #cbd5e1;
+            border-top: 3px solid #38bdf8;
+        }
+
+        .flow-arrow {
+            color: #38bdf8;
+            font-size: 1.5rem;
+        }
+
+        /* Problems Section */
+        .problems {
+            padding: 5rem 5%;
+            background-color: #f8fafc;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #0f172a;
+        }
+
+        .section-title .accent {
+            color: #f43f5e;
+        }
+
+        .problems-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .problem-card {
+            background-color: #ffffff;
+            padding: 2rem;
+            border-radius: 12px;
+            border-left: 4px solid #f43f5e;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .problem-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+        }
+
+        .problem-card .icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .problem-card h3 {
+            color: #f43f5e;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .problem-card p {
+            color: #64748b;
+        }
+
+        /* Benefits Section */
+        .benefits {
+            padding: 5rem 5%;
+            background-color: #ffffff;
+        }
+
+        .section-title .accent-green {
+            color: #10b981;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .benefit-card {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dbeafe 100%);
+            padding: 2rem;
+            border-radius: 12px;
+            border-top: 3px solid #10b981;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .benefit-card .icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .benefit-card h3 {
+            color: #10b981;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .benefit-card p {
+            color: #475569;
+        }
+
+        /* Processes Section */
+        .processes {
+            padding: 5rem 5%;
+            background-color: #f8fafc;
+        }
+
+        .processes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .process-card {
+            background-color: #ffffff;
+            padding: 2rem;
+            border-radius: 12px;
+            border-top: 4px solid #38bdf8;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .process-card .process-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .process-card h3 {
+            color: #0f172a;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .process-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .process-list li {
+            padding: 0.5rem 0;
+            color: #64748b;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .process-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #38bdf8;
+            font-weight: bold;
+        }
+
+        .process-kpi {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #e2e8f0;
+            color: #f59e0b;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        /* Architecture Section */
+        .architecture {
+            padding: 5rem 5%;
+            background: linear-gradient(135deg, #020617 0%, #0f172a 100%);
+            color: #f1f5f9;
+        }
+
+        .architecture .section-title {
+            color: #f1f5f9;
+        }
+
+        .architecture .section-title .accent {
+            color: #38bdf8;
+        }
+
+        .arch-diagram {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: rgba(30, 41, 59, 0.5);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid #38bdf8;
+        }
+
+        .arch-layer {
+            margin: 1.5rem 0;
+            text-align: center;
+        }
+
+        .arch-items {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 1rem 0;
+        }
+
+        .arch-item {
+            background-color: #1e293b;
+            padding: 0.8rem 1.2rem;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            border-top: 2px solid #38bdf8;
+        }
+
+        .arch-arrow {
+            color: #38bdf8;
+            font-size: 1.5rem;
+            margin: 0.5rem 0;
+        }
+
+        /* KPI Section */
+        .kpi-section {
+            padding: 5rem 5%;
+            background-color: #ffffff;
+        }
+
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .kpi-card {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            color: #f1f5f9;
+            padding: 2rem;
+            border-radius: 12px;
+            border-left: 4px solid #38bdf8;
+            text-align: center;
+        }
+
+        .kpi-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #38bdf8;
+            margin-bottom: 0.5rem;
+        }
+
+        .kpi-label {
+            font-size: 0.9rem;
+            color: #cbd5e1;
+            margin-bottom: 0.5rem;
+        }
+
+        .kpi-desc {
+            font-size: 0.85rem;
+            color: #94a3b8;
+        }
+
+        /* Roadmap Section */
+        .roadmap {
+            padding: 5rem 5%;
+            background-color: #f8fafc;
+        }
+
+        .roadmap-timeline {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+        }
+
+        .roadmap-phase {
+            flex: 1;
+            background-color: #ffffff;
+            padding: 2rem;
+            border-radius: 12px;
+            border-left: 4px solid #38bdf8;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            text-align: center;
+        }
+
+        .roadmap-phase.phase-1 {
+            border-left-color: #10b981;
+        }
+
+        .roadmap-phase.phase-2 {
+            border-left-color: #38bdf8;
+        }
+
+        .roadmap-phase.phase-3 {
+            border-left-color: #f59e0b;
+        }
+
+        .phase-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .phase-duration {
+            color: #64748b;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .phase-content {
+            font-size: 0.95rem;
+            color: #475569;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #020617;
+            color: #f1f5f9;
+            text-align: center;
+            padding: 3rem 5%;
+            margin-top: 4rem;
+        }
+
+        footer p {
+            color: #cbd5e1;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-links a {
+            color: #38bdf8;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #0284c7;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .roadmap-timeline {
+                flex-direction: column;
+            }
+        }
+        @media (max-width: 600px) {
+            .flow-steps {
+                flex-direction: column;
+            }
+
+            .flow-arrow {
+                transform: rotate(90deg);
+            }
+        }
+
+    
+/* Anchor offset for fixed header: keeps section titles from sticking to the top when using #links */
+:root { --header-offset: 120px; }
+@media (max-width: 768px) { :root { --header-offset: 96px; } }
+section[id] { scroll-margin-top: var(--header-offset); }
+
+
+        /* Audit Section */
+        .audit {
+            padding: 5rem 5%;
+            background-color: #ffffff;
+        }
+        .audit-wrap{
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 2rem;
+            align-items: start;
+        }
+        .audit-card{
+            background-color: #ffffff;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+            overflow: hidden;
+        }
+        .audit-head{
+            padding: 1.5rem 1.5rem 1rem 1.5rem;
+            background: linear-gradient(135deg, #020617 0%, #0f172a 100%);
+            color: #f1f5f9;
+            border-bottom: 1px solid rgba(56,189,248,0.35);
+        }
+        .audit-head h3{
+            font-size: 1.25rem;
+            margin-bottom: 0.4rem;
+        }
+        .audit-head p{
+            color: #cbd5e1;
+            font-size: 0.95rem;
+            margin: 0;
+        }
+        .audit-body{
+            padding: 1.5rem;
+        }
+        .audit-grid{
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+        .q{
+            display: grid;
+            grid-template-columns: 1fr 220px;
+            gap: 1rem;
+            padding: 0.9rem;
+            border-radius: 10px;
+            border: 1px solid #e2e8f0;
+            background: #f8fafc;
+        }
+        .q-title{
+            font-weight: 600;
+            color: #0f172a;
+            font-size: 0.95rem;
+        }
+        .q-hint{
+            color: #64748b;
+            font-size: 0.85rem;
+            margin-top: 0.25rem;
+        }
+        .q select{
+            width: 100%;
+            padding: 0.65rem 0.75rem;
+            border-radius: 8px;
+            border: 1px solid #cbd5e1;
+            background: #ffffff;
+            color: #0f172a;
+            font-weight: 600;
+        }
+        .audit-actions{
+            display:flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+        .btn-ghost{
+            background: transparent;
+            color: #0f172a;
+            padding: 0.7rem 1.2rem;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .btn-ghost:hover{
+            border-color: #38bdf8;
+            box-shadow: 0 2px 8px rgba(56,189,248,0.2);
+        }
+        .audit-side{
+            display: grid;
+            gap: 1rem;
+            position: sticky;
+            top: calc(var(--header-offset) + 10px);
+        }
+        .score-card{
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            color: #f1f5f9;
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid rgba(56,189,248,0.35);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.10);
+        }
+        .score-top{
+            display:flex;
+            justify-content: space-between;
+            gap: 1rem;
+            align-items: center;
+        }
+        .badge{
+            display:inline-flex;
+            align-items:center;
+            gap:0.5rem;
+            padding: 0.35rem 0.65rem;
+            border-radius: 999px;
+            font-size: 0.85rem;
+            font-weight: 800;
+            background: rgba(56,189,248,0.18);
+            border: 1px solid rgba(56,189,248,0.35);
+            color: #e2e8f0;
+            white-space: nowrap;
+        }
+        .progress{
+            margin-top: 1rem;
+            background: rgba(148,163,184,0.2);
+            border-radius: 999px;
+            overflow: hidden;
+            height: 10px;
+            border: 1px solid rgba(148,163,184,0.25);
+        }
+        .progress > div{
+            height: 100%;
+            width: 0%;
+            background: #38bdf8;
+            transition: width 0.2s;
+        }
+        .score-main{
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: #38bdf8;
+            margin-top: 0.7rem;
+        }
+        .score-sub{
+            color: #cbd5e1;
+            font-size: 0.95rem;
+            margin-top: 0.25rem;
+        }
+        .result-card{
+            background-color: #ffffff;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            padding: 1.25rem 1.5rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+        }
+        .result-card h4{
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: #0f172a;
+        }
+        .pill{
+            display:inline-block;
+            padding: 0.25rem 0.55rem;
+            border-radius: 999px;
+            font-size: 0.82rem;
+            font-weight: 800;
+            background: #f1f5f9;
+            border: 1px solid #e2e8f0;
+            color: #0f172a;
+            margin-right: 0.4rem;
+            margin-top: 0.25rem;
+        }
+        .muted{
+            color:#64748b;
+            font-size: 0.92rem;
+        }
+        .small{
+            font-size: 0.85rem;
+            color: #94a3b8;
+        }
+
+        @media (max-width: 980px) {
+            .audit-wrap{ grid-template-columns: 1fr; }
+            .audit-side{ position: static; }
+            .q{ grid-template-columns: 1fr; }
+        }
+
+
+        /* Multi-page nav dropdown */
+        .nav-links .dropdown { position: relative; }
+        .nav-links .dropdown-menu{
+            display:none;
+            position:absolute;
+            top: 100%;
+            left: 0;
+            background: rgba(15, 23, 42, 0.98);
+            border: 1px solid rgba(56,189,248,0.25);
+            border-radius: 12px;
+            padding: 0.6rem;
+            min-width: 220px;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+            z-index: 999;
+        }
+        .nav-links .dropdown-menu li{ margin: 0; }
+        .nav-links .dropdown-menu a{
+            display:block;
+            padding: 0.55rem 0.75rem;
+            border-radius: 10px;
+            color: #e2e8f0;
+            text-decoration: none;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+        .nav-links .dropdown-menu a:hover{
+            background: rgba(56,189,248,0.14);
+            color: #ffffff;
+        }
+        .nav-links .dropdown:hover .dropdown-menu{ display:block; }
+
+        /* Allow button style on <a> */
+        a.btn-primary, a.btn-secondary{
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+        }
+
+
+        /* Active nav item */
+        .nav-links a.active{
+            color: #38bdf8 !important;
+        }
+        .nav-links a.active::after{
+            content: "";
+            display: block;
+            height: 2px;
+            background: #38bdf8;
+            margin-top: 6px;
+            border-radius: 999px;
+        }
+        .nav-links .dropdown > a.active{
+            color: #38bdf8 !important;
+        }
+
+
+        /* Align nav items to the right (like earlier version) */
+        nav { justify-content: flex-start; }
+        .nav-links { margin-left: auto; }
+
+
+        /* Force nav links to the right (override any centering) */
+        nav { display:flex; align-items:center; justify-content:flex-start; gap: 1.5rem; }
+        .nav-links { margin-left:auto !important; display:flex; align-items:center; gap: 2rem; }
+
+</style>
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+
+
+    <!-- Cloudflare Web Analytics -->
+    <script defer src="https://static.cloudflareinsights.com/beacon.min.js"
+        data-cf-beacon='{"token":"69012921eb0d444dba63e1991c236ef8"}'></script>
+
+
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+</head>
+<body>
+
+    <!-- Navigation -->
+    
+    
+    
+    <nav>
+        <a href="../about.html" class="logo"><img src="../svprof_logo.png" alt="SVPROF" style="height: 75px; object-fit: contain; display: block;"></a>
+        <ul class="nav-links">
+            <li><a href="../about.html">О нас</a></li>
+            <li><a href="audit.html" class="active">Аудит</a></li>
+            <li><a href="index.html">Автоматизация</a></li>
+            <li><a href="../bi.html">BI</a></li>
+            <li><a href="/dashboard/">Дашборды</a></li>
+            <li><a href="../contacts.html">Контакты</a></li>
+            <li><a class="btn-primary" href="../contacts.html">Запрос демо</a></li>
+        </ul>
+    </nav>
+
+
+
+
+
+    <section class="hero">
+        <h1>Экспресс‑аудит автоматизации</h1>
+        <p>Ответьте на вопросы и получите индекс зрелости (0–100), сумму экономического эффекта, а также рекомендации по первым шагам.</p>
+
+        
+
+        <div class="hero-buttons">
+            <a class="btn-primary" href="#audit">Пройти экспресс‑аудит</a>
+            <a class="btn-secondary" href="../contacts.html">Связаться</a>
+        </div>
+        <div class="hero-flow">
+            <div class="flow-steps">
+                <div class="flow-step">📧 Каналы</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">🔄 n8n</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">⚙️ Системы</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">📊 BI</div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ===== Финансовый эффект (общая оценка) ===== -->
+    <section class="sv-finance" id="finance">
+        <div class="svf-wrap">
+            <h2 class="section-title">Какой финансовый эффект обычно даёт автоматизация</h2>
+            <p class="svf-sub">Ориентир экономического эффекта. Точный расчёт вы получите после прохождения экспресс‑аудита.</p>
+            <div class="svf-hint">⬇️ Прокрутите ниже — экспресс‑аудит покажет ваши зоны потерь и рекомендации.</div>
+
+            <div class="svf-grid">
+                <div class="svf-card">
+                    <div class="svf-badge">10–50 сотрудников в компании</div>
+                    <div class="svf-value">&gt; 2 000 000 ₽ / год</div>
+                    <ul>
+                        <li>Появляются метрики для быстрых управленческих решений</li>
+                        <li>Снижаются потери заказов и ошибки данных</li>
+                        <li>Уходит хаос в коммуникациях</li>
+                    </ul>
+                </div>
+
+                <div class="svf-card">
+                    <div class="svf-badge">50–200 сотрудников в компании</div>
+                    <div class="svf-value">&gt; 10 000 000 ₽ / год</div>
+                    <ul>
+                        <li>Устраняются “узкие места” в процессах</li>
+                        <li>Меньше потерь заказов на стыках отделов</li>
+                        <li>Повышается управляемость компании</li>
+                    </ul>
+                </div>
+
+                <div class="svf-card">
+                    <div class="svf-badge">200+ сотрудников в компании</div>
+                     <div class="svf-value">&gt; 20 000 000 ₽ / год</div>
+                    <div class="svf-note">*Оценка на каждые 200 сотрудников</div>
+                    <ul>
+                        <li>Прозрачность процессов и показателей</li>
+                        <li>Снижение ошибок и переделок</li>
+                        <li>Контроль на уровне руководства</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="svf-bottom">
+                Первый этап: Срок: ~2 месяца · Окупаемость: 2-6 месяцев
+                <div class="svf-actions">
+                    <a href="#audit" class="btn-primary">Пройти экспресс‑аудит</a>
+                    <a href="../contacts.html" class="btn-secondary">Обсудить внедрение</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <style>
+        .sv-finance{padding:1.8rem 5% 2.6rem;background:#0f172a;color:#f1f5f9}
+        .svf-wrap{max-width:1100px;margin:auto;padding-top:0.05rem}
+
+        /* tighten finance header spacing (without moving the section itself) */
+        .sv-finance .section-title{margin:0 0 0.35rem}
+        .sv-finance .svf-sub{line-height:1.35}
+        .sv-finance .svf-hint{line-height:1.35}
+        /* lift the cards up within the finance block */
+        .sv-finance .svf-grid{margin-top:-0.25rem}
+        /* compact badges and values a touch */
+        .svf-badge{margin-bottom:0.35rem}
+        .svf-value{margin-bottom:0.5rem}
+        .svf-card ul{margin-top:0.6rem}
+
+        .svf-sub{opacity:.9;margin:0.2rem 0 0.6rem;max-width:980px;font-size:0.95rem}
+        .svf-hint{opacity:.9;margin:0 0 0.9rem;font-size:0.9rem;color:#cbd5e1}
+        .svf-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.1rem;margin-top:-0.2rem}
+        .svf-card{background:#1e293b;padding:1.15rem;border-radius:12px;border:1px solid #38bdf8}
+        .svf-badge{font-weight:700;margin-bottom:.5rem;color:#38bdf8;padding-left:1.2rem;text-align:left}
+        .svf-value{font-size:1.3rem;font-weight:700;margin-bottom:.7rem;padding-left:1.2rem;text-align:left}
+        .svf-note{font-size:.8rem;color:#94a3b8;margin-bottom:.5rem}
+        .svf-card ul{margin-left:1.2rem;color:#cbd5e1}
+        .svf-card li{margin:0.35rem 0}
+        .svf-bottom{margin-top:2rem;padding-top:1rem;border-top:1px solid #334155}
+        .svf-actions{margin-top:1rem;display:flex;gap:1rem;flex-wrap:wrap}
+    </style>
+
+<section class="audit" id="audit">
+        <h2 class="section-title">Экспресс‑аудит: нужна ли вам <span class="accent">автоматизация</span>?</h2>
+
+        <div class="audit-wrap">
+            <div class="audit-card">
+                <div class="audit-head">
+                    <h3>Ответьте на 24 вопроса — получите индекс зрелости (0–100) и список быстрых улучшений</h3>
+                    <p>Это первичный аудит “узких мест”: ручная рутина, потери заявок, согласования, ДДС, интеграции и аналитика.</p>
+                </div>
+
+                <div class="audit-body">
+                    <form id="auditForm" class="audit-grid">
+                        <!-- A: Поток операций -->
+                        <div class="q" data-block="A">
+                            <div>
+                                <div class="q-title">1) Сколько заявок/операций обрабатывается в день?</div>
+                                <div class="q-hint">Чем больше поток — тем сильнее эффект от автоматизации.</div>
+                            </div>
+                            <select name="q1" required>
+                                <option value="" selected disabled>Выберите…</option>
+                                <option value="3">до 10</option>
+                                <option value="2">10–50</option>
+                                <option value="1">50–200</option>
+                                <option value="0">200+</option>
+                            </select>
+                        </div>
+
+                        <div class="q" data-block="A">
+                            <div>
+                                <div class="q-title">2) Сколько каналов входящих обращений используется?</div>
+                                <div class="q-hint">Email/телефон/мессенджеры/сайт/маркетплейсы.</div>
+                            </div>
+                            <select name="q2" required>
+                                <option value="" selected disabled>Выберите…</option>
+                                <option value="3">1</option>
+                                <option value="2">2–3</option>
+                                <option value="1">4–5</option>
+                                <option value="0">6+</option>
+                            </select>
+                        </div>
+
+                        <div class="q" data-block="A">
+                            <div>
+                                <div class="q-title">3) Где фиксируются заявки?</div>
+                                <div class="q-hint">Единая точка входа — ключ к контролю и SLA.</div>
+                            </div>
+                            <select name="q3" required>
+                                <option value="" selected disabled>Выберите…</option>
+                                <option value="3">В единой CRM/ERP</option>
+                                <option value="2">В одной таблице/системе</option>
+                                <option value="1">В нескольких таблицах/чатах</option>
+                                <option value="0">Часто не фиксируются</option>
+                            </select>
+                        </div>
+
+                        <div class="q" data-block="A">
+                            <div>
+                                <div class="q-title">4) Есть ручные “копировать‑вставить” между системами?</div>
+                                <div class="q-hint">Перенос данных вручную = ошибки и лишние часы.</div>
+                            </div>
+                            <select name="q4" required>
+                                <option value="" selected disabled>Выберите…</option>
+                                <option value="3">Нет</option>
+                                <option value="2">Редко</option>
+                                <option value="1">Регулярно</option>
+                                <option value="0">Постоянно</option>
+                            </select>
+                        </div>
+
+                        <div class="q" data-block="A">
+                            <div>
+                                <div class="q-title">5) Сколько времени уходит на регулярные отчеты (за неделю)?</div>
+                                <div class="q-hint">Автообновление BI и витрин данных экономит десятки часов.</div>
+                            </div>
+                            <select name="q5" required>
+                                <option value="" selected disabled>Выберите…</option>
+                                <option value="3">0–2 часа</option>
+                                <option value="2">2–8 часов</option>
+                                <option value="1">8–20 часов</option>
+                                <option value="0">20+ часов</option>
+                            </select>
+                        </div>
+
+                        <div class="q" data-block="A">
+                            <div>
+                                <div class="q-title">6) Как часто возникают ошибки/переделки из‑за ручного ввода?</div>
+                                <div class="q-hint">Ошибки = потери денег, сроков и доверия клиента.</div>
+                            </div>
+                            <select name="q6" required>
+                                <option value="" selected disabled>Выберите…</option>
+                                <option value="3">Почти никогда</option>
+                                <option value="2">Иногда</option>
+                                <option value="1">Часто</option>
+                                <option value="0">Постоянно</option>
+                            </select>
+                        </div>
+
+                        <div class="q" data-block="A">
+                            <div>
+                                <div class="q-title">7) Есть повторяющиеся процессы по шаблону (согласования/уведомления/сверки)?</div>
+                                <div class="q-hint">Шаблонность — идеальный кандидат на n8n‑автоматизацию.</div>
+                            </div>
+                            <select name="q7" required>
+                                <option value="" selected disabled>Выберите…</option>
+                                <option value="3">Почти нет</option>
+                                <option value="2">1–2 процесса</option>
+                                <option value="1">3–5 процессов</option>
+                                <option value="0">6+ процессов</option>
+                            </select>
+                        </div>
+
+                        <!-- B: Продажи и клиенты -->
+                        <div class="q" data-block="B">
+                            <div>
+                                <div class="q-title">8) Теряются ли заявки/обращения клиентов?</div>
+                                <div class="q-hint">Потеря заявки = прямой минус к выручке.</div>
+                            </div>
+                            <select name="q8" required>
+                                <option value="" selected disabled>Выберите…</option>
+                                <option value="3">Нет</option>
+                                <option value="2">Редко</option>
+                                <option value="1">Иногда</option>
+                                <option value="0">Часто</option>
+                            </select>
+                        </div>
+
+                        <div class="q" data-block="B">
+                            <div>
+                                <div class="q-title">9) Среднее время первого ответа клиенту</div>
+                                <div class="q-hint">Скорость реакции — один из главных факторов конверсии.</div>
+                            </div>
+                            <select name="q9" required>
+                                <option value="" selected disabled>Выберите…</option>
+                                <option value="3">до 15 минут</option>
+                                <option value="2">до 1 часа</option>
+                                <option value="1">до 4 часов</option>
+                                <option value="0">1 день и более</option>
+                            </select>
+                        </div>
+
+                        <div class="q" data-block="B">
+                            <div>
+                                <div class="q-title">10) Контроль статусов и напоминания менеджерам</div>
+                                <div class="q-hint">Авто‑напоминания и SLA‑эскалации “держат” сделки в потоке.</div>
+                            </div>
+                            <select name="q10" required>
+                                <option value="" selected disabled>Выберите…</option>
+                                <option value="3">Автоматически</option>
+                                <option value="2">Частично</option>
+                                <option value="1">Вручную</option>
+                                <option value="0">Нет</option>
+                            </select>
+                        </div>
+
+                        <div class="q" data-block="B">
+                            <div>
+                                <div class="q-title">11) КП/счета/договоры создаются автоматически из данных заказа?</div>
+                                <div class="q-hint">Автогенерация документов снижает ошибки и ускоряет оплату.</div>
+                            </div>
+                            <select name="q11" required>
+                                <option value="" selected disabled>Выберите…</option>
+                                <option value="3">Да</option>
+                                <option value="2">Частично</option>
+                                <option value="1">Редко</option>
+                                <option value="0">Нет, всё вручную</option>
+                            </select>
+                        </div>
+
+                        <div class="q" data-block="B">
+                            <div>
+                                <div class="q-title">12) Есть стандарты обработки обращений (шаблоны/FAQ/скрипты)?</div>
+                                <div class="q-hint">Это основа для бота и AI‑ассистента.</div>
+                            </div>
+                            <select name="q12" required>
+                                <option value="" selected disabled>Выберите…</option>
+                                <option value="3">Да</option>
+                                <option value="2">Частично</option>
+                                <option value="1">Почти нет</option>
+                                <option value="0">Нет</option>
+                            </select>
+                        </div>
+
+                        <div class="q" data-block="B">
+                            <div>
+                                <div class="q-title">13) Согласование скидок/цен/условий тормозит продажи?</div>
+                                <div class="q-hint">Маршрут согласований + лимиты = быстрее сделки.</div>
+                            </div>
+                            <select name="q13" required>
+                                <option value="" selected disabled>Выберите…</option>
+                                <option value="3">Нет</option>
+                                <option value="2">Иногда</option>
+                                <option value="1">Регулярно</option>
+                                <option value="0">Постоянно</option>
+                            </select>
+                        </div>
+
+                        <!-- C: Деньги и документы -->
+                        <div class="q" data-block="C">
+                            <div>
+                                <div class="q-title">14) Есть платежный календарь и прогноз ДДС (ВДДС)?</div>
+                                <div class="q-hint">Без прогноза ДДС тяжело управлять кассовыми разрывами.</div>
+                            </div>
+                            <select name="q14" required>
+                                <option value="" selected disabled>Выберите…</option>
+                                <option value="3">Да, в системе</option>
+                                <option value="2">Да, в Excel</option>
+                                <option value="1">Эпизодически</option>
+                                <option value="0">Нет</option>
+                            </select>
+                        </div>
+
+                        <div class="q" data-block="C">
+                            <div>
+                                <div class="q-title">15) Контроль дебиторки и просрочек</div>
+                                <div class="q-hint">Авто‑напоминания + статус оплат сильно сокращают DSO.</div>
+                            </div>
+                            <select name="q15" required>
+                                <option value="" selected disabled>Выберите…</option>
+                                <option value="3">Автоматический</option>
+                                <option value="2">Частично</option>
+                                <option value="1">Вручную</option>
+                                <option value="0">Практически отсутствует</option>
+                            </select>
+                        </div>
+
+                        <div class="q" data-block="C">
+                            <div>
+                                <div class="q-title">16) Согласование оплат/счетов/договоров</div>
+                                <div class="q-hint">Согласования через чаты = потери времени и непрозрачность.</div>
+                            </div>
+                            <select name="q16" required>
+                                <option value="" selected disabled>Выберите…</option>
+                                <option value="3">Через систему</option>
+                                <option value="2">Частично</option>
+                                <option value="1">Почта/чаты</option>
+                                <option value="0">“Ногами”, без контроля</option>
+                            </select>
+                        </div>
+
+                        <div class="q" data-block="C">
+                            <div>
+                                <div class="q-title">17) Сколько этапов согласований в ключевых процессах?</div>
+                                <div class="q-hint">Чем больше этапов — тем важнее маршрут и контроль зависаний.</div>
+                            </div>
+                            <select name="q17" required>
+                                <option value="" selected disabled>Выберите…</option>
+                                <option value="3">1</option>
+                                <option value="2">2–3</option>
+                                <option value="1">4–5</option>
+                                <option value="0">6+</option>
+                            </select>
+                        </div>
+
+                        <div class="q" data-block="C">
+                            <div>
+                                <div class="q-title">18) Видно ли, где и у кого чаще всего “зависают” документы?</div>
+                                <div class="q-hint">Трассируемость — база для управляемости и улучшений.</div>
+                            </div>
+                            <select name="q18" required>
+                                <option value="" selected disabled>Выберите…</option>
+                                <option value="3">Да</option>
+                                <option value="2">Частично</option>
+                                <option value="1">Сложно</option>
+                                <option value="0">Нет</option>
+                            </select>
+                        </div>
+
+                        <!-- D: Системы, данные, BI -->
+                        <div class="q" data-block="D">
+                            <div>
+                                <div class="q-title">19) Уровень ИТ‑контура (учётка/CRM/BI)</div>
+                                <div class="q-hint">Чем более структурирован ИТ‑контур — тем быстрее внедрение.</div>
+                            </div>
+                            <select name="q19" required>
+                                <option value="" selected disabled>Выберите…</option>
+                                <option value="3">ERP/1С + CRM + BI</option>
+                                <option value="2">ERP/1С + CRM</option>
+                                <option value="1">Только ERP/1С</option>
+                                <option value="0">В основном Excel</option>
+                            </select>
+                        </div>
+
+                        <div class="q" data-block="D">
+                            <div>
+                                <div class="q-title">20) Интеграции между системами</div>
+                                <div class="q-hint">Интеграции убирают ручной перенос данных.</div>
+                            </div>
+                            <select name="q20" required>
+                                <option value="" selected disabled>Выберите…</option>
+                                <option value="3">Есть</option>
+                                <option value="2">Частично</option>
+                                <option value="1">Почти нет</option>
+                                <option value="0">Нет</option>
+                            </select>
+                        </div>
+
+                        <div class="q" data-block="D">
+                            <div>
+                                <div class="q-title">21) Качество справочников (контрагенты/номенклатура/НСИ)</div>
+                                <div class="q-hint">“Грязные” данные мешают автоматизации и аналитике.</div>
+                            </div>
+                            <select name="q21" required>
+                                <option value="" selected disabled>Выберите…</option>
+                                <option value="3">Корректные</option>
+                                <option value="2">Есть нюансы</option>
+                                <option value="1">Много дублей</option>
+                                <option value="0">Сильно проблемные</option>
+                            </select>
+                        </div>
+
+                        <div class="q" data-block="D">
+                            <div>
+                                <div class="q-title">22) BI‑дашборды для собственника/руководителей</div>
+                                <div class="q-hint">Если нет “приборной панели”, управление превращается в пожаротушение.</div>
+                            </div>
+                            <select name="q22" required>
+                                <option value="" selected disabled>Выберите…</option>
+                                <option value="3">Есть</option>
+                                <option value="2">Частично</option>
+                                <option value="1">Пробуем</option>
+                                <option value="0">Нет</option>
+                            </select>
+                        </div>
+
+                        <div class="q" data-block="D">
+                            <div>
+                                <div class="q-title">23) Частота обновления данных/отчетности</div>
+                                <div class="q-hint">Быстрее данные → быстрее решения → меньше потерь.</div>
+                            </div>
+                            <select name="q23" required>
+                                <option value="" selected disabled>Выберите…</option>
+                                <option value="3">Онлайн</option>
+                                <option value="2">Ежедневно</option>
+                                <option value="1">Раз в неделю</option>
+                                <option value="0">“Когда попросили”</option>
+                            </select>
+                        </div>
+
+                        <div class="q" data-block="D">
+                            <div>
+                                <div class="q-title">24) Используете AI/ботов/ассистентов в работе?</div>
+                                <div class="q-hint">AI ускоряет ответы, классификацию, поиск и аналитику.</div>
+                            </div>
+                            <select name="q24" required>
+                                <option value="" selected disabled>Выберите…</option>
+                                <option value="3">Да</option>
+                                <option value="2">Тестируем</option>
+                                <option value="1">Планируем</option>
+                                <option value="0">Нет</option>
+                            </select>
+                        </div>
+
+                        <div class="audit-actions">
+                            <button type="submit" class="btn-primary">Рассчитать результат</button>
+                            <button type="button" id="resetAudit" class="btn-ghost">Сбросить</button>
+                            <button type="button" id="copyAudit" class="btn-ghost">Скопировать результат</button>
+                        </div>
+
+                        <p class="small">* Заполняя форму, вы получаете экспресс‑оценку. Для точного плана нужен короткий созвон (15–20 минут).</p>
+                    </form>
+                </div>
+            </div>
+
+            <div class="audit-side">
+                <div class="score-card" id="scoreCard">
+                    <div class="score-top">
+                        <div class="badge">📌 Индекс зрелости</div>
+                        <div class="badge" id="completionBadge">0/24</div>
+                    </div>
+                    <div class="progress" aria-label="progress"><div id="progressBar"></div></div>
+
+                    <div class="score-main" id="scoreValue">—</div>
+                    <div class="score-sub" id="scoreLevel">Заполните ответы, чтобы увидеть результат</div>
+                    <div class="small" id="scoreNeed"></div>
+                </div>
+
+                <div class="result-card">
+                    <h4>Что вы получите</h4>
+                    <div class="muted">
+                        <span class="pill">ТОП‑3 зоны потерь</span>
+                        <span class="pill">ТОП‑3 quick wins</span>
+                        <span class="pill">Рекомендации по n8n</span>
+                        <span class="pill">Оценка готовности к AI</span>
+                    </div>
+                    <p class="muted" style="margin-top: 0.75rem;">
+                        По вашему чек‑листу мы подготовим краткий план: <strong>что автоматизировать в первую очередь</strong> и <strong>какой эффект ожидать</strong>.
+                    </p>
+                    <p class="small" style="margin-top: 0.5rem;">
+                        Хотите разбор результата? Напишите на <a href="mailto:info@svprof.ru" style="color:#38bdf8; text-decoration:none;">info@svprof.ru</a> или в Telegram <a href="https://t.me/svprof_bot" style="color:#38bdf8; text-decoration:none;">@svprof_bot</a>.
+                    </p>
+                </div>
+
+                
+<div class="result-card" id="financeResult" style="display:none;">
+    <h4>Финансовый потенциал по вашим ответам</h4>
+    <div id="financeText" class="muted"></div>
+</div>
+
+<div class="result-card" id="recommendCard" style="display:none;">
+                    <h4>Ваши рекомендации</h4>
+                    <div id="recommendText" class="muted"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+<footer>
+        <h3>Готовы трансформировать вашу компанию?</h3>
+        <p>Запросите демонстрацию платформы прямо сейчас</p>
+        <button class="btn-primary" style="margin: 2rem 0;" data-scroll="#contacts">Запрос демо</button>
+        <div class="footer-links">
+            <a href="#">О нас</a>
+            <a href="#">Возможности</a>
+            <a href="#">Документация</a>
+            <a href="#contacts">Контакты</a>
+        </div>
+        <p>&copy; 2026 SVProf. Все права защищены.</p>
+    </footer>
+<script>
+(function(){
+  const form = document.getElementById('auditForm');
+  if(!form) return;
+
+  const selects = Array.from(form.querySelectorAll('select'));
+  const scoreValue = document.getElementById('scoreValue');
+  const scoreLevel = document.getElementById('scoreLevel');
+  const scoreNeed = document.getElementById('scoreNeed');
+  const completionBadge = document.getElementById('completionBadge');
+  const progressBar = document.getElementById('progressBar');
+  const recommendCard = document.getElementById('recommendCard');
+  const recommendText = document.getElementById('recommendText');
+
+  const totalQuestions = selects.length;
+  const maxPerQ = 3;
+  const maxTotal = totalQuestions * maxPerQ;
+
+  function clamp(n, a, b){ return Math.min(Math.max(n,a),b); }
+
+  function getMaturity(){
+    let answered = 0;
+    let sum = 0;
+    const blockSum = {A:0,B:0,C:0,D:0};
+    const blockCnt = {A:0,B:0,C:0,D:0};
+
+    selects.forEach(sel => {
+      const v = sel.value;
+      const q = sel.closest('.q');
+      const block = (q && q.dataset && q.dataset.block) ? q.dataset.block : 'A';
+      blockCnt[block] += 1;
+
+      if(v !== ''){
+        answered += 1;
+        const num = parseInt(v,10);
+        if(!isNaN(num)) { sum += num; blockSum[block] += num; }
+      }
+    });
+
+    const maturity = answered ? Math.round((sum / maxTotal) * 100) : null;
+    const completion = Math.round((answered / totalQuestions) * 100);
+
+    const blockAvg = {};
+    Object.keys(blockSum).forEach(k => {
+      blockAvg[k] = blockCnt[k] ? (blockSum[k] / (blockCnt[k]*maxPerQ)) : 0; // 0..1
+    });
+
+    return { maturity, answered, completion, blockAvg };
+  }
+
+  function levelFromScore(score){
+    if(score === null) return {label: "Заполните ответы, чтобы увидеть результат", emoji:"📝"};
+    if(score <= 25) return {label:"Ручное управление. Высокий потенциал эффекта от автоматизации.", emoji:"🔥"};
+    if(score <= 50) return {label:"Частичная управляемость. Есть быстрые точки автоматизации (2–4 недели).", emoji:"⚡"};
+    if(score <= 75) return {label:"Хорошая база. Нужны интеграции, регламенты и BI‑контур.", emoji:"✅"};
+    return {label:"Высокая зрелость. Можно внедрять AI‑агентов и предиктивную аналитику.", emoji:"🤖"};
+  }
+
+  function recommendations(blockAvg){
+    // lower avg => more pain
+    const entries = Object.entries(blockAvg).sort((a,b)=>a[1]-b[1]);
+    const top = entries.slice(0,2).map(x=>x[0]);
+
+    const map = {
+      A: {
+        title:"Поток операций и ручная рутина",
+        quick:["Интеграции между системами (убрать копипаст)", "Автоматизация отчетов и выгрузок", "Единый реестр заявок/операций + уведомления"]
+      },
+      B: {
+        title:"Продажи и сервис",
+        quick:["Единый вход заявок из всех каналов", "SLA‑контроль: напоминания/эскалации", "Автогенерация КП/счетов/договоров"]
+      },
+      C: {
+        title:"Деньги и документооборот",
+        quick:["Маршруты согласований оплат/счетов/договоров", "Платежный календарь + прогноз ДДС", "Автоконтроль дебиторки и просрочек"]
+      },
+      D: {
+        title:"Данные и аналитика",
+        quick:["Очистка НСИ/справочников (дубли, ошибки)", "Витрина данных + BI‑дашборды", "Подготовка базы для AI (FAQ, классификация, поиск)"]
+      }
+    };
+
+    const blocks = top.map(k => map[k]);
+    const text = `
+      <p><strong>ТОП‑зоны потерь:</strong> ${blocks.map(b=>b.title).join(", ")}.</p>
+      <p><strong>Quick wins (что можно сделать в первую очередь):</strong></p>
+      <ol style="margin:0.5rem 0 0 1.2rem;">
+        ${blocks.flatMap(b=>b.quick.slice(0,2)).slice(0,3).map(x=>`<li>${x}</li>`).join("")}
+      </ol>
+    `;
+    return text;
+  }
+
+  
+    const financeResult = document.getElementById('financeResult');
+    const financeText = document.getElementById('financeText');
+
+    function financeEstimate(score){
+        if(score < 30) return "У вас высокий потенциал улучшений. В компаниях вашего профиля эффект может составлять 3–8 млн ₽ в год.";
+        if(score < 60) return "Средний потенциал улучшений. Типичный эффект автоматизации 1–5 млн ₽ в год.";
+        return "Вы уже на хорошем уровне, но точечные улучшения могут дать 0.5–2 млн ₽ в год.";
+    }
+
+function updateUI(){
+    const {maturity, answered, completion, blockAvg} = getMaturity();
+
+    completionBadge.textContent = `${answered}/${totalQuestions}`;
+    progressBar.style.width = `${clamp(completion,0,100)}%`;
+
+    if(maturity === null){
+      scoreValue.textContent = "—";
+      scoreLevel.textContent = "Заполните ответы, чтобы увидеть результат";
+      scoreNeed.textContent = "";
+      recommendCard.style.display = "none";
+      return;
+    }
+
+    scoreValue.textContent = `${maturity}/100`;
+    const lvl = levelFromScore(maturity);
+    scoreLevel.textContent = `${lvl.emoji} ${lvl.label}`;
+
+    const need = 100 - maturity;
+    scoreNeed.textContent = `Потенциал эффекта: примерно ${need}/100 (чем выше — тем больше “запас” улучшений).`;
+
+    // show recommendations once > 50% answered
+    if(answered >= Math.ceil(totalQuestions*0.5)){
+      recommendText.innerHTML = recommendations(blockAvg);
+      recommendCard.style.display = "block"; financeResult.style.display="block"; financeText.textContent = financeEstimate(maturity);
+    } else {
+      recommendCard.style.display = "none";
+    }
+  }
+
+  // init
+  selects.forEach(sel => sel.addEventListener('change', updateUI));
+  updateUI();
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    updateUI();
+    // мягко прокручиваем к карточке результата
+    document.getElementById('scoreCard')?.scrollIntoView({behavior:'smooth', block:'start'});
+  });
+
+  document.getElementById('resetAudit')?.addEventListener('click', function(){
+    selects.forEach(s => s.value = "");
+    updateUI();
+  });
+
+  document.getElementById('copyAudit')?.addEventListener('click', async function(){
+    const {maturity, answered} = getMaturity();
+    const text = maturity === null
+      ? "Экспресс-аудит SVProf: результат пока не рассчитан — заполните вопросы."
+      : `Экспресс-аудит SVProf: индекс зрелости ${maturity}/100. Заполнено ${answered}/${totalQuestions}.`;
+    try{
+      await navigator.clipboard.writeText(text);
+      this.textContent = "Скопировано ✓";
+      setTimeout(()=>this.textContent="Скопировать результат", 1500);
+    } catch(err){
+      alert("Не удалось скопировать. Вы можете выделить и скопировать текст вручную: " + text);
+    }
+  });
+
+  // Smooth scroll for buttons/links with data-scroll
+  document.querySelectorAll('[data-scroll]').forEach(el=>{
+    el.addEventListener('click', function(){
+      const target = this.getAttribute('data-scroll');
+      if(!target) return;
+      const node = document.querySelector(target);
+      if(node) node.scrollIntoView({behavior:'smooth', block:'start'});
+    });
+  });
+})();
+</script>
+</body>
