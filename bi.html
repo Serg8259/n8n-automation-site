@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SVProf — BI</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #0f172a;
+            background-color: #ffffff;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5%;
+            background-color: #020617;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #38bdf8;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #f1f5f9;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #38bdf8;
+        }
+
+        .btn-primary {
+            background-color: #38bdf8;
+            color: #0f172a;
+            padding: 0.7rem 1.5rem;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn-primary:hover {
+            background-color: #0284c7;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #020617 0%, #0f172a 100%);
+            color: #f1f5f9;
+            padding: 6rem 5%;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero .highlight {
+            color: #38bdf8;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: #cbd5e1;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 3rem;
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: #f1f5f9;
+            padding: 0.8rem 2rem;
+            border: 2px solid #38bdf8;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-secondary:hover {
+            background-color: #38bdf8;
+            color: #0f172a;
+        }
+
+        .hero-flow {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+            background-color: rgba(56, 189, 248, 0.1);
+            border-radius: 12px;
+            border: 1px solid #38bdf8;
+        }
+
+        .flow-steps {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .flow-step {
+            background-color: #1e293b;
+            padding: 0.8rem 1.2rem;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            color: #cbd5e1;
+            border-top: 3px solid #38bdf8;
+        }
+
+        .flow-arrow {
+            color: #38bdf8;
+            font-size: 1.5rem;
+        }
+
+        /* Problems Section */
+        .problems {
+            padding: 5rem 5%;
+            background-color: #f8fafc;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #0f172a;
+        }
+
+        .section-title .accent {
+            color: #f43f5e;
+        }
+
+        .problems-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .problem-card {
+            background-color: #ffffff;
+            padding: 2rem;
+            border-radius: 12px;
+            border-left: 4px solid #f43f5e;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .problem-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+        }
+
+        .problem-card .icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .problem-card h3 {
+            color: #f43f5e;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .problem-card p {
+            color: #64748b;
+        }
+
+        /* Benefits Section */
+        .benefits {
+            padding: 5rem 5%;
+            background-color: #ffffff;
+        }
+
+        .section-title .accent-green {
+            color: #10b981;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .benefit-card {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dbeafe 100%);
+            padding: 2rem;
+            border-radius: 12px;
+            border-top: 3px solid #10b981;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .benefit-card .icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .benefit-card h3 {
+            color: #10b981;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .benefit-card p {
+            color: #475569;
+        }
+
+        /* Processes Section */
+        .processes {
+            padding: 5rem 5%;
+            background-color: #f8fafc;
+        }
+
+        .processes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .process-card {
+            background-color: #ffffff;
+            padding: 2rem;
+            border-radius: 12px;
+            border-top: 4px solid #38bdf8;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .process-card .process-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .process-card h3 {
+            color: #0f172a;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .process-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .process-list li {
+            padding: 0.5rem 0;
+            color: #64748b;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .process-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #38bdf8;
+            font-weight: bold;
+        }
+
+        .process-kpi {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #e2e8f0;
+            color: #f59e0b;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        /* Architecture Section */
+        .architecture {
+            padding: 5rem 5%;
+            background: linear-gradient(135deg, #020617 0%, #0f172a 100%);
+            color: #f1f5f9;
+        }
+
+        .architecture .section-title {
+            color: #f1f5f9;
+        }
+
+        .architecture .section-title .accent {
+            color: #38bdf8;
+        }
+
+        .arch-diagram {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: rgba(30, 41, 59, 0.5);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid #38bdf8;
+        }
+
+        .arch-layer {
+            margin: 1.5rem 0;
+            text-align: center;
+        }
+
+        .arch-items {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 1rem 0;
+        }
+
+        .arch-item {
+            background-color: #1e293b;
+            padding: 0.8rem 1.2rem;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            border-top: 2px solid #38bdf8;
+        }
+
+        .arch-arrow {
+            color: #38bdf8;
+            font-size: 1.5rem;
+            margin: 0.5rem 0;
+        }
+
+        /* KPI Section */
+        .kpi-section {
+            padding: 5rem 5%;
+            background-color: #ffffff;
+        }
+
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .kpi-card {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            color: #f1f5f9;
+            padding: 2rem;
+            border-radius: 12px;
+            border-left: 4px solid #38bdf8;
+            text-align: center;
+        }
+
+        .kpi-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #38bdf8;
+            margin-bottom: 0.5rem;
+        }
+
+        .kpi-label {
+            font-size: 0.9rem;
+            color: #cbd5e1;
+            margin-bottom: 0.5rem;
+        }
+
+        .kpi-desc {
+            font-size: 0.85rem;
+            color: #94a3b8;
+        }
+
+        /* Roadmap Section */
+        .roadmap {
+            padding: 5rem 5%;
+            background-color: #f8fafc;
+        }
+
+        .roadmap-timeline {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+        }
+
+        .roadmap-phase {
+            flex: 1;
+            background-color: #ffffff;
+            padding: 2rem;
+            border-radius: 12px;
+            border-left: 4px solid #38bdf8;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            text-align: center;
+        }
+
+        .roadmap-phase.phase-1 {
+            border-left-color: #10b981;
+        }
+
+        .roadmap-phase.phase-2 {
+            border-left-color: #38bdf8;
+        }
+
+        .roadmap-phase.phase-3 {
+            border-left-color: #f59e0b;
+        }
+
+        .phase-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .phase-duration {
+            color: #64748b;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .phase-content {
+            font-size: 0.95rem;
+            color: #475569;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #020617;
+            color: #f1f5f9;
+            text-align: center;
+            padding: 3rem 5%;
+            margin-top: 4rem;
+        }
+
+        footer p {
+            color: #cbd5e1;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-links a {
+            color: #38bdf8;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #0284c7;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .roadmap-timeline {
+                flex-direction: column;
+            }
+
+            .flow-steps {
+                flex-direction: column;
+            }
+
+            .flow-arrow {
+                transform: rotate(90deg);
+            }
+        }
+    
+/* Anchor offset for fixed header: keeps section titles from sticking to the top when using #links */
+:root { --header-offset: 120px; }
+@media (max-width: 768px) { :root { --header-offset: 96px; } }
+section[id] { scroll-margin-top: var(--header-offset); }
+
+
+        /* Audit Section */
+        .audit {
+            padding: 5rem 5%;
+            background-color: #ffffff;
+        }
+        .audit-wrap{
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 2rem;
+            align-items: start;
+        }
+        .audit-card{
+            background-color: #ffffff;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+            overflow: hidden;
+        }
+        .audit-head{
+            padding: 1.5rem 1.5rem 1rem 1.5rem;
+            background: linear-gradient(135deg, #020617 0%, #0f172a 100%);
+            color: #f1f5f9;
+            border-bottom: 1px solid rgba(56,189,248,0.35);
+        }
+        .audit-head h3{
+            font-size: 1.25rem;
+            margin-bottom: 0.4rem;
+        }
+        .audit-head p{
+            color: #cbd5e1;
+            font-size: 0.95rem;
+            margin: 0;
+        }
+        .audit-body{
+            padding: 1.5rem;
+        }
+        .audit-grid{
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+        .q{
+            display: grid;
+            grid-template-columns: 1fr 220px;
+            gap: 1rem;
+            padding: 0.9rem;
+            border-radius: 10px;
+            border: 1px solid #e2e8f0;
+            background: #f8fafc;
+        }
+        .q-title{
+            font-weight: 600;
+            color: #0f172a;
+            font-size: 0.95rem;
+        }
+        .q-hint{
+            color: #64748b;
+            font-size: 0.85rem;
+            margin-top: 0.25rem;
+        }
+        .q select{
+            width: 100%;
+            padding: 0.65rem 0.75rem;
+            border-radius: 8px;
+            border: 1px solid #cbd5e1;
+            background: #ffffff;
+            color: #0f172a;
+            font-weight: 600;
+        }
+        .audit-actions{
+            display:flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+        .btn-ghost{
+            background: transparent;
+            color: #0f172a;
+            padding: 0.7rem 1.2rem;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .btn-ghost:hover{
+            border-color: #38bdf8;
+            box-shadow: 0 2px 8px rgba(56,189,248,0.2);
+        }
+        .audit-side{
+            display: grid;
+            gap: 1rem;
+            position: sticky;
+            top: calc(var(--header-offset) + 10px);
+        }
+        .score-card{
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            color: #f1f5f9;
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid rgba(56,189,248,0.35);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.10);
+        }
+        .score-top{
+            display:flex;
+            justify-content: space-between;
+            gap: 1rem;
+            align-items: center;
+        }
+        .badge{
+            display:inline-flex;
+            align-items:center;
+            gap:0.5rem;
+            padding: 0.35rem 0.65rem;
+            border-radius: 999px;
+            font-size: 0.85rem;
+            font-weight: 800;
+            background: rgba(56,189,248,0.18);
+            border: 1px solid rgba(56,189,248,0.35);
+            color: #e2e8f0;
+            white-space: nowrap;
+        }
+        .progress{
+            margin-top: 1rem;
+            background: rgba(148,163,184,0.2);
+            border-radius: 999px;
+            overflow: hidden;
+            height: 10px;
+            border: 1px solid rgba(148,163,184,0.25);
+        }
+        .progress > div{
+            height: 100%;
+            width: 0%;
+            background: #38bdf8;
+            transition: width 0.2s;
+        }
+        .score-main{
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: #38bdf8;
+            margin-top: 0.7rem;
+        }
+        .score-sub{
+            color: #cbd5e1;
+            font-size: 0.95rem;
+            margin-top: 0.25rem;
+        }
+        .result-card{
+            background-color: #ffffff;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            padding: 1.25rem 1.5rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+        }
+        .result-card h4{
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: #0f172a;
+        }
+        .pill{
+            display:inline-block;
+            padding: 0.25rem 0.55rem;
+            border-radius: 999px;
+            font-size: 0.82rem;
+            font-weight: 800;
+            background: #f1f5f9;
+            border: 1px solid #e2e8f0;
+            color: #0f172a;
+            margin-right: 0.4rem;
+            margin-top: 0.25rem;
+        }
+        .muted{
+            color:#64748b;
+            font-size: 0.92rem;
+        }
+        .small{
+            font-size: 0.85rem;
+            color: #94a3b8;
+        }
+
+        @media (max-width: 980px) {
+            .audit-wrap{ grid-template-columns: 1fr; }
+            .audit-side{ position: static; }
+            .q{ grid-template-columns: 1fr; }
+        }
+
+
+        /* Multi-page nav dropdown */
+        .nav-links .dropdown { position: relative; }
+        .nav-links .dropdown-menu{
+            display:none;
+            position:absolute;
+            top: 100%;
+            left: 0;
+            background: rgba(15, 23, 42, 0.98);
+            border: 1px solid rgba(56,189,248,0.25);
+            border-radius: 12px;
+            padding: 0.6rem;
+            min-width: 220px;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+            z-index: 999;
+        }
+        .nav-links .dropdown-menu li{ margin: 0; }
+        .nav-links .dropdown-menu a{
+            display:block;
+            padding: 0.55rem 0.75rem;
+            border-radius: 10px;
+            color: #e2e8f0;
+            text-decoration: none;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+        .nav-links .dropdown-menu a:hover{
+            background: rgba(56,189,248,0.14);
+            color: #ffffff;
+        }
+        .nav-links .dropdown:hover .dropdown-menu{ display:block; }
+
+        /* Allow button style on <a> */
+        a.btn-primary, a.btn-secondary{
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+        }
+
+
+        /* Active nav item */
+        .nav-links a.active{
+            color: #38bdf8 !important;
+        }
+        .nav-links a.active::after{
+            content: "";
+            display: block;
+            height: 2px;
+            background: #38bdf8;
+            margin-top: 6px;
+            border-radius: 999px;
+        }
+        .nav-links .dropdown > a.active{
+            color: #38bdf8 !important;
+        }
+
+
+        /* Align nav items to the right (like earlier version) */
+        nav { justify-content: flex-start; }
+        .nav-links { margin-left: auto; }
+
+
+        /* Force nav links to the right (override any centering) */
+        nav { display:flex; align-items:center; justify-content:flex-start; gap: 1.5rem; }
+        .nav-links { margin-left:auto !important; display:flex; align-items:center; gap: 2rem; }
+
+
+/* =========================================================
+   SVPROF: unified card sections (match About page sections)
+   Applies only to BI blocks: "Виды BI-отчётности" + "Подход SVProf"
+========================================================= */
+.svf-content-section{
+  background: #f8fafc;
+  border-radius: 16px;
+  padding: 40px;
+  max-width: 1400px;
+  margin: 0 auto 60px auto;
+}
+@media (max-width: 768px){
+  .svf-content-section{ padding: 30px 20px; }
+}
+
+.svf-section-title{
+  font-size: 1.8rem;
+  margin-bottom: 30px;
+  color: #0f172a;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.svf-section-title-icon{
+  font-size: 1.6rem;
+}
+
+.svf-cards-grid{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+.svf-benefits-grid{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+@media (max-width: 1024px){
+  .svf-benefits-grid{ grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 768px){
+  .svf-cards-grid, .svf-benefits-grid{ grid-template-columns: 1fr; }
+}
+
+.svf-card{
+  background: linear-gradient(135deg, #f0fdf4 0%, #dbeafe 100%);
+  border-radius: 12px;
+  padding: 24px;
+  border-top: 3px solid #0e7490;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.svf-card:hover{
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.10);
+}
+.svf-card h3{
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+  color: #0e7490;
+}
+.svf-card p{
+  color: #475569;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  font-weight: 600;
+}
+.svf-small{
+  margin-top: 10px;
+  color: #64748b;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+
+/* --- BI: "Пример" mini button inside card title --- */
+.svf-card-header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.svf-mini-btn{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 12px;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-decoration: none;
+  color: #ffffff;
+  background: linear-gradient(135deg, #0ea5e9 0%, #0e7490 100%);
+  border: 1px solid rgba(255,255,255,0.15);
+  box-shadow: 0 6px 14px rgba(2, 132, 199, 0.18);
+  white-space: nowrap;
+  transition: transform 0.2s, box-shadow 0.2s, filter 0.2s;
+}
+.svf-mini-btn:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 10px 22px rgba(2, 132, 199, 0.26);
+  filter: brightness(1.02);
+}
+.svf-mini-btn:active{
+  transform: translateY(0px);
+}
+
+</style>
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+
+
+    <!-- Cloudflare Web Analytics -->
+    <script defer src="https://static.cloudflareinsights.com/beacon.min.js"
+        data-cf-beacon='{"token":"69012921eb0d444dba63e1991c236ef8"}'></script>
+
+
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+</head>
+
+<body>
+
+    <nav>
+        <a href="about.html" class="logo"><img src="svprof_logo.png" alt="SVPROF" style="height: 75px; object-fit: contain; display: block;"></a>
+        <ul class="nav-links">
+            <li><a href="about.html">О нас</a></li>
+            <li><a href="automation/audit.html">Аудит</a></li>
+            <li><a href="automation/index.html">Автоматизация</a></li>
+            <li><a href="bi.html" class="active">BI</a></li>
+            <li><a href="/dashboard/">Дашборды</a></li>
+            <li><a href="contacts.html">Контакты</a></li>
+            <li><a class="btn-primary" href="contacts.html">Запрос демо</a></li>
+        </ul>
+    </nav>
+
+<section class="hero">
+    <h1>BI‑аналитика и отчётность для руководителей</h1>
+    <p>Превращаем данные из 1С/ERP/CRM/Excel в интерактивные дашборды для принятия быстрых управленческих решений и успешного выполнения утвержденных планов.</p>
+    <div class="hero-buttons">
+        <a class="btn-primary" href="automation/audit.html">Оценить зрелость (аудит)</a>
+        <a class="btn-secondary" href="contacts.html">Запросить демо</a>
+    </div>
+    <div class="hero-flow">
+        <div class="flow-steps">
+            <div class="flow-step">🗄️ DWH</div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step">🔄 ETL</div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step">📊 Power BI</div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step">🎯 KPI</div>
+        </div>
+    </div>
+</section>
+
+<section class="svf-content-section" id="bi-types">
+  <h2 class="svf-section-title">
+    <span class="svf-section-title-icon">📊</span>
+    Виды BI-отчётности
+  </h2>
+
+  <div class="svf-benefits-grid">
+    <div class="svf-card">
+      <div class="svf-card-header"><h3>Финансы</h3><a class="svf-mini-btn" href="/dashboard/">Пример</a></div>
+      <p>БДР (P&amp;L), БДДС (CF), план‑факт, кассовые разрывы, дебиторка/кредиторка, маржа, упущенная прибыль и др.</p>
+      <div class="svf-small">Кому: собственник, финансовый директор, бухгалтерия</div>
+    </div>
+
+    <div class="svf-card">
+      <h3>Продажи</h3>
+      <p>Воронка продаж, конверсии, средний чек, LTV, динамика по клиентам/менеджерам/каналам/территориям и др.</p>
+      <div class="svf-small">Кому: коммерческий директор, РОП</div>
+    </div>
+
+    <div class="svf-card">
+      <h3>Маркетинг</h3>
+      <p>ABC/XYZ, ассортиментная матрица, отдача от 1 SKU, ценообразование, мониторинг конкурентов и др.</p>
+      <div class="svf-small">Кому: директор по маркетингу, маркетологи</div>
+    </div>
+
+    <div class="svf-card">
+      <h3>Производство</h3>
+      <p>План‑факт выпуска, отклонения, простои, загрузка мощностей, себестоимость, качество и др.</p>
+      <div class="svf-small">Кому: директор производства, технолог</div>
+    </div>
+
+    <div class="svf-card">
+      <h3>Закупки, склад и логистика</h3>
+      <p>Контроль закупочных цен и условий поставки, остатки, оборачиваемость, дефицит/излишки, неликвиды, SLA, маршруты.</p>
+      <div class="svf-small">Кому: снабжение, склад, логистика</div>
+    </div>
+
+    <div class="svf-card">
+      <h3>Управление проектами/исполнением</h3>
+      <p>Статусы задач, просрочки, контроль согласований, нагрузка команды, эффективность.</p>
+      <div class="svf-small">Кому: руководители подразделений</div>
+    </div>
+
+    <div class="svf-card">
+      <h3>Клиентский сервис</h3>
+      <p>SLA ответов, причины обращений, скорость реакции, качество обслуживания, NPS.</p>
+      <div class="svf-small">Кому: поддержка, сервис‑дир</div>
+    </div>
+  </div>
+</section>
+
+
+<section class="svf-content-section" id="bi-approach">
+  <h2 class="svf-section-title">
+    <span class="svf-section-title-icon">🎯</span>
+    Подход SVProf
+  </h2>
+
+  <div class="svf-cards-grid">
+    <div class="svf-card">
+      <h3>1) Информационный фундамент</h3>
+      <p>Формируем хранилище (DWH), витрины (DataMart) и создаем модели, при которых показатели рассчитываются одинаково во всех отчётах.</p>
+    </div>
+
+    <div class="svf-card">
+      <h3>2) Единые справочники</h3>
+      <p>Нормализуем номенклатуру, контрагентов, спецификации и др., а также правила расчёта KPI.</p>
+    </div>
+
+    <div class="svf-card">
+      <h3>3) Дашборды по ролям</h3>
+      <p>Руководителям — KPI и отклонения, отделам — операционные панели и контроль исполнения.</p>
+    </div>
+
+    <div class="svf-card">
+      <h3>4) Автообновление + алерты</h3>
+      <p>Отчёты обновляются по расписанию, а важные события приходят уведомлениями.</p>
+    </div>
+  </div>
+</section>
+
+
+<section class="cta" id="bi-cta">
+    <h2 class="section-title">Хотите дашборд‑пример?</h2>
+    <p style="max-width: 900px; margin: 0 auto; text-align:center; color:#94a3b8;">
+        Покажем демо‑пример отчётности под вашу отрасль и расскажем, как быстро собрать первую версию на ваших данных.
+    </p>
+    <div class="hero-buttons" style="justify-content:center; margin-top: 1.25rem;">
+        <a class="btn-primary" href="contacts.html">Запросить демо</a>
+        <a class="btn-secondary" href="automation/audit.html">Пройти аудит</a>
+    </div>
+</section>
+<footer>
+        <h3>Готовы трансформировать вашу компанию?</h3>
+        <p>Запросите демонстрацию платформы прямо сейчас</p>
+        <button class="btn-primary" style="margin: 2rem 0;" data-scroll="#contacts">Запрос демо</button>
+        <div class="footer-links">
+            <a href="#">О нас</a>
+            <a href="#">Возможности</a>
+            <a href="#">Документация</a>
+            <a href="#contacts">Контакты</a>
+        </div>
+        <p>&copy; 2026 SVProf. Все права защищены.</p>
+    </footer>
+</body>
+</html>
